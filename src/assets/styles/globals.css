@@ -1,0 +1,104 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  body {
+    @apply font-sans bg-hd-cream text-hd-secondary antialiased;
+  }
+
+  h1, h2, h3, .serif-heading {
+    @apply font-serif font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-hd-primary text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-card hover:bg-hd-primary-dark hover:-translate-y-0.5 hover:shadow-card-hover;
+  }
+
+  .btn-secondary {
+    @apply border border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white;
+  }
+
+  .btn-outline {
+    @apply border border-hd-border bg-white text-hd-secondary px-6 py-3 rounded-full font-medium transition-all hover:border-hd-primary hover:text-hd-primary;
+  }
+
+  .card-premium {
+    @apply bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-premium;
+  }
+
+  .subtle-border {
+    @apply border border-hd-primary/15;
+  }
+
+  .section-divider {
+    @apply w-16 h-0.5 bg-hd-primary mx-auto my-4;
+  }
+
+  .badge-popular {
+    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark text-white text-xs font-bold px-3 py-1 rounded-full shadow-md;
+  }
+
+  .badge-new {
+    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark text-white text-xs font-bold px-2 py-1 rounded-full shadow-md;
+  }
+
+  .hero-bg-pattern {
+    @apply bg-gradient-to-br from-hd-cream to-hd-light;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% { 
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+}
