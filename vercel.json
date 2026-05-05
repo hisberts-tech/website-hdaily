@@ -27,7 +27,13 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/index.html",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-matched-path"
+        }
+      ]
     }
   ]
 }
