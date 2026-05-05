@@ -47,30 +47,6 @@ const Paniers: React.FC = () => {
       popular: false,
       image: '/src/assets/images/pexels-bertellifotografia-30893333.jpg',
     },
-    {
-      name: 'Panier Student',
-      price: 450,
-      description: 'Parfait pour les étudiants',
-      features: ['Riz', 'Pâtes', 'Sauce tomate', 'Conserves de base'],
-      popular: false,
-      image: '/src/assets/images/pexels-david-iloba-28486424-14881644.jpg',
-    },
-    {
-      name: 'Panier Gourmet',
-      price: 3500,
-      description: 'Pour les amateurs de bonne cuisine',
-      features: ['Ingrédients gastronomiques', 'Herbes aromatiques', 'Épices rares', 'Produits artisanaux'],
-      popular: false,
-      image: '/src/assets/images/pexels-badun-21044412.jpg',
-    },
-    {
-      name: 'Panier Écologique',
-      price: 1800,
-      description: '100% bio et local',
-      features: ['Produits biologiques', 'Légumes locaux', 'Fruits de saison', 'Emballages recyclables'],
-      popular: false,
-      image: '/src/assets/images/pexels-alisa-skripina-2147548092-35568378.jpg',
-    },
   ];
 
   return (
@@ -93,7 +69,7 @@ const Paniers: React.FC = () => {
 
       {/* Paniers Grid */}
       <section className="pb-20 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {paniers.map((panier, index) => (
             <div
               key={index}
@@ -106,18 +82,7 @@ const Paniers: React.FC = () => {
                   Populaire
                 </span>
               )}
-              <div className="h-48 relative overflow-hidden">
-                <img
-                  src={panier.image}
-                  alt={panier.name}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = '/src/assets/images/default-product.jpg';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
+                            <div className="p-6 flex-1 flex flex-col">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
                     <h3 className="font-serif text-2xl font-semibold text-hd-secondary">{panier.name}</h3>

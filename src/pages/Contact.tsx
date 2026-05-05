@@ -83,27 +83,6 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {contactInfo.map((info, index) => (
-            <a
-              key={index}
-              href={info.action}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow group"
-              target={info.action.startsWith('http') ? '_blank' : '_self'}
-              rel={info.action.startsWith('http') ? 'noopener noreferrer' : undefined}
-            >
-              <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <i className={`${info.icon} text-white text-xl`}></i>
-              </div>
-              <h3 className="font-semibold text-lg text-hd-secondary mb-1">{info.label}</h3>
-              <p className="text-hd-text group-hover:text-hd-primary transition-colors">{info.value}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* Contact Form & Map */}
       <section className="py-20 px-6 bg-hd-light">
         <div className="max-w-6xl mx-auto">
@@ -181,6 +160,33 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Contact Info Cards */}
+      <section className="py-20 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-serif text-hd-secondary mb-4">Différentes façons de nous contacter</h2>
+          <p className="text-hd-text text-lg max-w-2xl mx-auto">
+            Choisissez la méthode qui vous convient le mieux pour nous joindre rapidement.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {contactInfo.map((info, index) => (
+            <a
+              key={index}
+              href={info.action}
+              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow group"
+              target={info.action.startsWith('http') ? '_blank' : '_self'}
+              rel={info.action.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <i className={`${info.icon} text-white text-xl`}></i>
+              </div>
+              <h3 className="font-semibold text-lg text-hd-secondary mb-1">{info.label}</h3>
+              <p className="text-hd-text group-hover:text-hd-primary transition-colors">{info.value}</p>
+            </a>
+          ))}
         </div>
       </section>
 

@@ -4,7 +4,13 @@ import { useCart } from '../context/CartContext';
 import { useNotifications } from '../context/NotificationContext';
 import logo from '../assets/images/ChatGPT_Image_7_mars_2026__10_43_31-removebg-preview.svg';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onSubscriptionClick: () => void;
+  onCreditClick: () => void;
+  onCartClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onCartClick }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { getTotalItems } = useCart();
   const { addNotification } = useNotifications();
@@ -23,11 +29,11 @@ const Header: React.FC = () => {
   };
 
   const handleSubscriptionClick = () => {
-    addNotification('Fonctionnalité d\'abonnement bientôt disponible!', 'info');
+    onSubscriptionClick();
   };
 
   const handleCreditClick = () => {
-    addNotification('Service de crédit bientôt disponible!', 'info');
+    onCreditClick();
   };
 
   const isActive = (href: string) => {
@@ -64,14 +70,17 @@ const Header: React.FC = () => {
           
           {/* Action Buttons */}
           <div className="flex items-center gap-4">
-            <Link to="/boutique" className="relative group">
-              <i className="fas fa-shopping-bag text-xl text-black group-hover:text-hd-primary transition"></i>
+            <button
+              onClick={onCartClick}
+              className="relative group"
+            >
+              <i className="fas fa-shopping-cart text-xl text-black group-hover:text-hd-primary transition"></i>
               {getTotalItems() > 0 && (
                 <span className="absolute -top-2 -right-2 bg-hd-primary text-white text-[11px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">
                   {getTotalItems()}
                 </span>
               )}
-            </Link>
+            </button>
             
             <button
               onClick={handleCreditClick}
@@ -100,14 +109,17 @@ const Header: React.FC = () => {
           
           {/* Mobile Actions */}
           <div className="flex items-center gap-3">
-            <Link to="/boutique" className="relative group">
-              <i className="fas fa-shopping-bag text-lg text-black group-hover:text-hd-primary transition"></i>
+            <button
+              onClick={onCartClick}
+              className="relative group"
+            >
+              <i className="fas fa-shopping-cart text-lg text-black group-hover:text-hd-primary transition"></i>
               {getTotalItems() > 0 && (
                 <span className="absolute -top-2 -right-2 bg-hd-primary text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center shadow-md">
                   {getTotalItems()}
                 </span>
               )}
-            </Link>
+            </button>
             
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

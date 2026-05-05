@@ -42,7 +42,7 @@ const Boutique: React.FC = () => {
     }));
   };
 
-  const handleToggleFavorite = (productId: number) => {
+  const handleToggleFavorite = (_productId: number) => {
     addNotification('Fonctionnalité favoris bientôt disponible!', 'info');
   };
 
@@ -79,7 +79,11 @@ const Boutique: React.FC = () => {
       </section>
 
       {/* Category Filters */}
-      <section className="pb-8 px-6 max-w-7xl mx-auto">
+      <section className="pb-20 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-serif text-hd-secondary mb-4">Catégories</h2>
+          <p className="text-hd-text">Parcourez nos produits par catégorie</p>
+        </div>
         <div className="flex flex-wrap justify-center gap-3">
           {categories.map((category) => (
             <button

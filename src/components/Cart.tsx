@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useCart } from '../context/CartContext';
 import { useNotifications } from '../context/NotificationContext';
 
-const Cart: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { items, getTotalPrice, updateQuantity, removeFromCart, clearCart } = useCart();
+interface CartProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
+  const { items, getTotalPrice, updateQuantity, removeFromCart } = useCart();
   const { addNotification } = useNotifications();
 
   const handleCheckout = () => {
@@ -28,7 +32,7 @@ const Cart: React.FC = () => {
     window.open(whatsappUrl, '_blank');
     
     addNotification('Commande envoyée via WhatsApp!', 'success');
-    setIsOpen(false);
+    onClose();
   };
 
   const handleQuantityChange = (productId: number, change: number) => {
@@ -51,11 +55,11 @@ const Cart: React.FC = () => {
     <>
       {/* Cart Toggle Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => window.dispatchEvent(new CustomEvent('openCart'))}
         className="fixed bottom-6 right-6 bg-hd-primary text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-30 hover:scale-110 transition-transform md:bottom-6"
         aria-label="Panier"
       >
-        <i className="fas fa-shopping-bag text-xl"></i>
+        <i className="fas fa-shopping-cart text-xl"></i>
         {totalItems > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[11px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">
             {totalItems}
@@ -72,7 +76,7 @@ const Cart: React.FC = () => {
               <div className="flex items-center justify-between p-4 border-b">
                 <h3 className="text-lg font-semibold text-hd-secondary">Mon Panier</h3>
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={onClose}
                   className="text-gray-400 hover:text-gray-600 transition-colors"
                 >
                   <i className="fas fa-times text-xl"></i>
@@ -86,7 +90,7 @@ const Cart: React.FC = () => {
                     <i className="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
                     <p className="text-gray-500 mb-4">Votre panier est vide</p>
                     <button
-                      onClick={() => setIsOpen(false)}
+                      onClick={onClose}
                       className="text-hd-primary hover:text-hd-primary-dark transition-colors"
                     >
                       Continuer mes achats
@@ -155,7 +159,7 @@ const Cart: React.FC = () => {
                       Commander via WhatsApp
                     </button>
                     <button
-                      onClick={() => setIsOpen(false)}
+                      onClick={onClose}
                       className="w-full btn-outline"
                     >
                       Continuer mes achats
