@@ -22,7 +22,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 150,
     unit: "kg",
-    image: "/src/assets/images/pexels-badun-21044412.jpg",
+    image: "/src/assets/images/sac du riz.webp",
     description: "Tomates rouges juteuses, cultivées localement",
     stock: 50,
     badge: "Bio"
@@ -33,7 +33,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 80,
     unit: "pièce",
-    image: "/src/assets/images/pexels-badun-21044412.jpg",
+    image: "/src/assets/images/sac du riz.webp",
     description: "Laitues fraîches et croquantes pour vos salades",
     stock: 30,
     badge: "Nouveau"
@@ -44,7 +44,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 120,
     unit: "kg",
-    image: "/src/assets/images/pexels-badun-21044412.jpg",
+    image: "/src/assets/images/sac du riz.webp",
     description: "Carottes douces et colorées, riches en vitamines",
     stock: 45,
   },
@@ -54,7 +54,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 100,
     unit: "douzaine",
-    image: "/src/assets/images/pexels-badun-21044412.jpg",
+    image: "/src/assets/images/sac du riz.webp",
     description: "Bananes sucrées cultivées en Haïti",
     stock: 100,
     badge: "Local"

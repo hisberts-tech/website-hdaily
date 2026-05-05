@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       price,
       category: 'frais',
       unit: 'panier',
-      image: '/src/assets/images/panier-default.jpg',
+      image: '/src/assets/images/sac du riz.webp',
       description: `Panier ${name}`,
       stock: 10,
     });
