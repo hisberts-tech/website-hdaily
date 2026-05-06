@@ -26,14 +26,8 @@
   ],
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html",
-      "has": [
-        {
-          "type": "header",
-          "key": "x-matched-path"
-        }
-      ]
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
     }
   ]
 }

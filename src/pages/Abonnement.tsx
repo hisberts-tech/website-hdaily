@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useNotifications } from '../context/NotificationContext';
 
 const Abonnement: React.FC = () => {

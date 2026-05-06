@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { useNotifications } from '../context/NotificationContext';
 import logo from '../assets/images/ChatGPT_Image_7_mars_2026__10_43_31-removebg-preview.svg';
 
 interface HeaderProps {
@@ -13,8 +12,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onCartClick }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { getTotalItems } = useCart();
-  const { addNotification } = useNotifications();
-  const location = useLocation();
+    const location = useLocation();
 
   const navigation = [
     { name: 'Accueil', href: '/', icon: 'fa-home' },
