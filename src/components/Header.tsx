@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
         <div className="px-4 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="H-Daily Logo" className="h-20 w-auto" />
+            <img src={logo} alt="H-Daily Logo" className="h-24 w-auto" />
           </Link>
           
           {/* Mobile Actions */}
