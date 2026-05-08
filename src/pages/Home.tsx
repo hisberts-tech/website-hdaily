@@ -133,7 +133,7 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-row gap-4 justify-center w-full lg:w-1/2 lg:ml-auto">
-              <Link to="/boutique" className="flex-1 max-w-xs text-center bg-white border-2 border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white">
+              <Link to="/boutique" className="flex-1 max-w-xs text-center bg-hd-primary text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary-dark">
                 Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
               </Link>
               <a href="#paniers" className="flex-1 max-w-xs text-center bg-white border-2 border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white">
