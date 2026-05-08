@@ -103,8 +103,8 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="hero-bg-pattern pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="flex-1 text-center lg:text-left">
+          <div className="flex flex-col items-center gap-8 lg:gap-12">
+            <div className="text-center lg:text-left w-full lg:w-1/2">
               <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
                 <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
                 <span className="text-xs font-semibold text-hd-primary tracking-wide">Épicerie Premium en Haïti</span>
@@ -116,16 +116,8 @@ const Home: React.FC = () => {
               <p className="text-hd-text text-lg max-w-xl mx-auto lg:mx-0 mt-6 leading-relaxed">
                 Produits frais, paniers sur mesure et livraison rapide. Découvrez la nouvelle façon de faire vos courses.
               </p>
-              <div className="hidden lg:flex flex-wrap gap-4 justify-start mt-8">
-                <Link to="/boutique" className="btn-primary">
-                  Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
-                </Link>
-                <a href="#paniers" className="btn-outline">
-                  Voir nos coffrets
-                </a>
-              </div>
             </div>
-            <div className="flex-1 w-full">
+            <div className="w-full lg:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
                 <img src={heroImage} alt="Assortiment artisanal" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -140,14 +132,14 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="flex flex-row gap-4 justify-center mt-8 lg:hidden w-full">
-            <Link to="/boutique" className="btn-primary flex-1 max-w-xs">
-              Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
-            </Link>
-            <a href="#paniers" className="btn-outline flex-1 max-w-xs">
-              Voir nos coffrets
-            </a>
+            <div className="flex flex-row gap-4 justify-center w-full lg:w-1/2 lg:ml-auto">
+              <Link to="/boutique" className="btn-primary flex-1 max-w-xs text-center">
+                Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
+              </Link>
+              <a href="#paniers" className="btn-outline flex-1 max-w-xs text-center">
+                Voir nos coffrets
+              </a>
+            </div>
           </div>
         </div>
       </section>
