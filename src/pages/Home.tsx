@@ -258,7 +258,7 @@ const Home: React.FC = () => {
 
       {/* Services */}
       <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+        <div className="grid grid-cols-2 gap-6 text-center">
           {services.map((service, index) => (
             <div key={index} className="p-5">
               <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
