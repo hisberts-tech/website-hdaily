@@ -115,14 +115,6 @@ const Home: React.FC = () => {
             <p className="text-hd-text text-lg max-w-xl mx-auto lg:mx-0 mt-6 leading-relaxed">
               Produits frais, paniers sur mesure et livraison rapide. Découvrez la nouvelle façon de faire vos courses.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
-              <Link to="/boutique" className="btn-primary">
-                Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
-              </Link>
-              <a href="#paniers" className="btn-outline">
-                Voir nos coffrets
-              </a>
-            </div>
           </div>
           <div className="flex-1 w-full">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
@@ -138,6 +130,14 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex flex-row gap-4 justify-center lg:justify-start w-full lg:w-auto">
+            <Link to="/boutique" className="btn-primary flex-1 lg:flex-none">
+              Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
+            </Link>
+            <a href="#paniers" className="btn-outline flex-1 lg:flex-none">
+              Voir nos coffrets
+            </a>
           </div>
         </div>
       </section>
