@@ -139,15 +139,15 @@ const Home: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-row gap-4 justify-center mt-6 lg:hidden">
-                <Link to="/boutique" className="btn-primary flex-1">
-                  Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
-                </Link>
-                <a href="#paniers" className="btn-outline flex-1">
-                  Voir nos coffrets
-                </a>
-              </div>
             </div>
+          </div>
+          <div className="flex flex-row gap-4 justify-center mt-8 lg:hidden w-full">
+            <Link to="/boutique" className="btn-primary flex-1 max-w-xs">
+              Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
+            </Link>
+            <a href="#paniers" className="btn-outline flex-1 max-w-xs">
+              Voir nos coffrets
+            </a>
           </div>
         </div>
       </section>
