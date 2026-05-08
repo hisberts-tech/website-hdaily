@@ -272,21 +272,21 @@ const Home: React.FC = () => {
       </section>
 
       {/* Subscription CTA */}
-      <section className="py-16 px-6 bg-gradient-to-r from-hd-secondary to-gray-800 text-white">
+      <section className="py-16 px-6 bg-hd-light">
         <div className="max-w-5xl mx-auto text-center">
           <i className="fas fa-crown text-4xl text-hd-primary mb-3"></i>
-          <h2 className="font-serif text-4xl">Abonnement Premium</h2>
+          <h2 className="font-serif text-4xl text-hd-secondary">Abonnement Premium</h2>
           <div className="w-24 h-0.5 bg-hd-primary mx-auto my-4"></div>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
-            Recevez chaque semaine votre sélection personnalisée et bénéficiez de -10% sur tous vos achats
+          <p className="text-lg text-hd-text max-w-2xl mx-auto">
+            Recevez chaque semaine votre sélection personnalisée et bénéficiez de -3% sur tous vos achats
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <button className="bg-white text-hd-secondary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
+            <Link to="/abonnement" className="btn-primary">
               S'abonner dès maintenant
-            </button>
-            <button className="border border-white/30 px-8 py-3 rounded-full font-semibold hover:bg-white/10">
+            </Link>
+            <a href="#contact" className="btn-outline">
               En savoir plus
-            </button>
+            </a>
           </div>
         </div>
       </section>
