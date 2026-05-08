@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="H-Daily Logo" className="h-20 w-auto" />
+            <img src={logo} alt="H-Daily Logo" className="h-28 w-auto" />
           </Link>
           
           {/* Desktop Navigation */}
@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
         <div className="px-4 py-3 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="H-Daily Logo" className="h-16 w-auto" />
+            <img src={logo} alt="H-Daily Logo" className="h-20 w-auto" />
           </Link>
           
           {/* Mobile Actions */}
