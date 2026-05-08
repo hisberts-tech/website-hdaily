@@ -102,7 +102,22 @@ const Home: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-bg-pattern pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center gap-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1 w-full">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+              <img src={heroImage} alt="Assortiment artisanal" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-hd-primary shadow-sm">
+                Livraison 24h
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 text-center">
+                <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
+                  <p className="text-hd-secondary font-medium text-xs uppercase tracking-wide">Assortiment premium</p>
+                  <p className="text-hd-text text-xs mt-1">Fruits tropicaux, épices & produits frais</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="flex-1 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
               <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
@@ -122,21 +137,6 @@ const Home: React.FC = () => {
               <a href="#paniers" className="btn-outline">
                 Voir nos coffrets
               </a>
-            </div>
-          </div>
-          <div className="flex-1 w-full">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <img src={heroImage} alt="Assortiment artisanal" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-hd-primary shadow-sm">
-                Livraison 24h
-              </div>
-              <div className="absolute bottom-4 left-4 right-4 text-center">
-                <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
-                  <p className="text-hd-secondary font-medium text-xs uppercase tracking-wide">Assortiment premium</p>
-                  <p className="text-hd-text text-xs mt-1">Fruits tropicaux, épices & produits frais</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
