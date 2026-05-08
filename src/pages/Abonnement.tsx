@@ -4,15 +4,29 @@ import { useNotifications } from '../context/NotificationContext';
 const Abonnement: React.FC = () => {
   const { addNotification } = useNotifications();
   const [selectedPlan, setSelectedPlan] = useState<string>('');
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     address: '',
     frequency: 'weekly',
+    deliveryDay: 'monday',
+    deliveryTime: 'morning',
     paymentMethod: '',
     creditRequest: false
   });
+
+  const availableProducts = [
+    { id: 'rice', name: 'Riz premium', price: 500, unit: 'kg' },
+    { id: 'pasta', name: 'Pâtes', price: 300, unit: 'paquet' },
+    { id: 'oil', name: 'Huile végétale', price: 450, unit: 'bouteille' },
+    { id: 'tomatoes', name: 'Tomates fraîches', price: 200, unit: 'kg' },
+    { id: 'vegetables', name: 'Légumes mixtes', price: 350, unit: 'panier' },
+    { id: 'fruits', name: 'Fruits tropicaux', price: 400, unit: 'panier' },
+    { id: 'milk', name: 'Lait', price: 150, unit: 'litre' },
+    { id: 'eggs', name: 'Œufs', price: 250, unit: 'douzaine' },
+  ];
 
   const subscriptionPlans = [
     {
@@ -79,6 +93,14 @@ const Abonnement: React.FC = () => {
     setSelectedPlan(planId);
   };
 
+  const handleProductToggle = (productId: string) => {
+    setSelectedProducts(prev => 
+      prev.includes(productId) 
+        ? prev.filter(id => id !== productId)
+        : [...prev, productId]
+    );
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
@@ -99,12 +121,15 @@ const Abonnement: React.FC = () => {
     
     // Reset form
     setSelectedPlan('');
+    setSelectedProducts([]);
     setFormData({
       name: '',
       email: '',
       phone: '',
       address: '',
       frequency: 'weekly',
+      deliveryDay: 'monday',
+      deliveryTime: 'morning',
       paymentMethod: '',
       creditRequest: false
     });
@@ -278,6 +303,41 @@ const Abonnement: React.FC = () => {
         </div>
       </section>
 
+      {/* Product Selection */}
+      <section className="py-20 px-6 max-w-4xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Choisissez vos produits</h2>
+          <div className="section-divider"></div>
+          <p className="text-hd-text max-w-2xl mx-auto mt-4">
+            Sélectionnez les produits que vous souhaitez recevoir régulièrement
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {availableProducts.map((product) => (
+            <div
+              key={product.id}
+              onClick={() => handleProductToggle(product.id)}
+              className={`cursor-pointer rounded-xl border-2 p-4 transition-all ${
+                selectedProducts.includes(product.id)
+                  ? 'border-hd-primary bg-hd-primary/10'
+                  : 'border-hd-border hover:border-hd-primary'
+              }`}
+            >
+              <div className="flex items-start justify-between mb-2">
+                <h4 className="font-semibold text-hd-secondary">{product.name}</h4>
+                {selectedProducts.includes(product.id) && (
+                  <i className="fas fa-check-circle text-hd-primary"></i>
+                )}
+              </div>
+              <p className="text-sm text-hd-text">
+                {product.price} HTG / {product.unit}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Payment Methods */}
       <section className="py-20 px-6 bg-hd-light">
         <div className="max-w-4xl mx-auto">
@@ -357,6 +417,37 @@ const Abonnement: React.FC = () => {
               >
                 <option value="weekly">Chaque semaine</option>
                 <option value="monthly">Chaque mois</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-hd-secondary mb-2">Jour de livraison</label>
+              <select
+                name="deliveryDay"
+                value={formData.deliveryDay}
+                onChange={handleInputChange}
+                className="w-full px-5 py-3 rounded-xl border border-hd-border bg-white focus:outline-none focus:ring-2 focus:ring-hd-primary"
+              >
+                <option value="monday">Lundi</option>
+                <option value="tuesday">Mardi</option>
+                <option value="wednesday">Mercredi</option>
+                <option value="thursday">Jeudi</option>
+                <option value="friday">Vendredi</option>
+                <option value="saturday">Samedi</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-hd-secondary mb-2">Heure de livraison</label>
+              <select
+                name="deliveryTime"
+                value={formData.deliveryTime}
+                onChange={handleInputChange}
+                className="w-full px-5 py-3 rounded-xl border border-hd-border bg-white focus:outline-none focus:ring-2 focus:ring-hd-primary"
+              >
+                <option value="morning">Matin (8h - 12h)</option>
+                <option value="afternoon">Après-midi (12h - 17h)</option>
+                <option value="evening">Soir (17h - 20h)</option>
               </select>
             </div>
 
