@@ -244,7 +244,7 @@ const Home: React.FC = () => {
                 </ul>
                 <button
                   onClick={() => handlePanierOrder(panier.name, panier.price)}
-                  className="mt-6 w-full py-2.5 rounded-full font-semibold shadow-md transition bg-green-600 text-white hover:bg-green-700"
+                  className="mt-6 w-full py-2.5 rounded-full font-semibold shadow-md transition bg-hd-primary text-white hover:bg-hd-primary-dark"
                 >
                   Commander
                 </button>
