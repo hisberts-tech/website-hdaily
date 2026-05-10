@@ -92,7 +92,7 @@ const Boutique: React.FC = () => {
               className={`px-6 py-2 rounded-full border font-medium transition-all ${
                 selectedCategory === category.value
                   ? 'bg-hd-primary text-white border-hd-primary'
-                  : 'border-hd-border text-hd-secondary hover:border-hd-primary hover:text-hd-primary'
+                  : 'border-hd-primary text-hd-secondary hover:bg-hd-primary hover:text-white'
               }`}
             >
               {category.label}
