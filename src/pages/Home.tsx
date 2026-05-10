@@ -282,7 +282,7 @@ const Home: React.FC = () => {
             <Link to="/abonnement" className="btn-primary">
               S'abonner dès maintenant
             </Link>
-            <a href="#contact" className="btn-outline">
+            <a href="#contact" className="bg-white border-2 border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white">
               En savoir plus
             </a>
           </div>
