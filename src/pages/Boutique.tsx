@@ -124,7 +124,7 @@ const Boutique: React.FC = () => {
                     alt={product.name}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.src = '/src/assets/images/sac du riz.webp';
+                      e.currentTarget.src = '/images/sac du riz.webp';
                     }}
                   />
                   {product.badge && (

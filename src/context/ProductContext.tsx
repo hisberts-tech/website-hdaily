@@ -22,7 +22,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 150,
     unit: "kg",
-    image: "/src/assets/images/sac du riz.webp",
+    image: "/images/sac du riz.webp",
     description: "Tomates rouges juteuses, cultivées localement",
     stock: 50,
     badge: "Bio"
@@ -33,7 +33,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 80,
     unit: "pièce",
-    image: "/src/assets/images/sac du riz.webp",
+    image: "/images/sac du riz.webp",
     description: "Laitues fraîches et croquantes pour vos salades",
     stock: 30,
     badge: "Nouveau"
@@ -44,7 +44,7 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 120,
     unit: "kg",
-    image: "/src/assets/images/sac du riz.webp",
+    image: "/images/sac du riz.webp",
     description: "Carottes douces et colorées, riches en vitamines",
     stock: 45,
   },
@@ -54,12 +54,12 @@ const initialProducts: Product[] = [
     category: "frais",
     price: 100,
     unit: "douzaine",
-    image: "/src/assets/images/sac du riz.webp",
+    image: "/images/sac du riz.webp",
     description: "Bananes sucrées cultivées en Haïti",
     stock: 100,
     badge: "Local"
   },
-  
+
   // Produits Alimentaires
   {
     id: 5,
@@ -67,7 +67,7 @@ const initialProducts: Product[] = [
     category: "alimentaires",
     price: 350,
     unit: "kg",
-    image: "/src/assets/images/pexels-bertellifotografia-30893333.jpg",
+    image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Riz de haute qualité, grain long",
     stock: 200,
     badge: "Best-seller"
@@ -78,7 +78,7 @@ const initialProducts: Product[] = [
     category: "alimentaires",
     price: 280,
     unit: "500g",
-    image: "/src/assets/images/pexels-bertellifotografia-30893333.jpg",
+    image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Pâtes authentiques importées d'Italie",
     stock: 80,
   },
@@ -88,7 +88,7 @@ const initialProducts: Product[] = [
     category: "alimentaires",
     price: 850,
     unit: "L",
-    image: "/src/assets/images/pexels-bertellifotografia-30893333.jpg",
+    image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Huile d'olive premium, première pression à froid",
     stock: 40,
     badge: "Premium"
@@ -99,11 +99,11 @@ const initialProducts: Product[] = [
     category: "alimentaires",
     price: 180,
     unit: "kg",
-    image: "/src/assets/images/pexels-bertellifotografia-30893333.jpg",
+    image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Farine de blé de qualité supérieure",
     stock: 150,
   },
-  
+
   // Produits Quotidiens
   {
     id: 9,
@@ -111,7 +111,7 @@ const initialProducts: Product[] = [
     category: "quotidiens",
     price: 250,
     unit: "L",
-    image: "/src/assets/images/pexels-david-iloba-28486424-14881644.jpg",
+    image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Savon liquide doux pour les mains",
     stock: 60,
     badge: "Écologique"
@@ -122,7 +122,7 @@ const initialProducts: Product[] = [
     category: "quotidiens",
     price: 120,
     unit: "paquet",
-    image: "/src/assets/images/pexels-david-iloba-28486424-14881644.jpg",
+    image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Essuie-tout de haute qualité, 3 rouleaux",
     stock: 100,
   },
@@ -132,7 +132,7 @@ const initialProducts: Product[] = [
     category: "quotidiens",
     price: 450,
     unit: "L",
-    image: "/src/assets/images/pexels-david-iloba-28486424-14881644.jpg",
+    image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Détergent biodegradable pour sols",
     stock: 35,
     badge: "Bio"
@@ -143,7 +143,7 @@ const initialProducts: Product[] = [
     category: "quotidiens",
     price: 150,
     unit: "paquet",
-    image: "/src/assets/images/pexels-david-iloba-28486424-14881644.jpg",
+    image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Sacs poubelle résistants, 30 unités",
     stock: 120,
   }
