@@ -8,6 +8,8 @@ const Boutique: React.FC = () => {
   const { addToCart } = useCart();
   const { addNotification } = useNotifications();
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8;
 
   const categories = [
     { value: 'all', label: 'Tous' },
@@ -18,10 +20,22 @@ const Boutique: React.FC = () => {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category as any);
+    setCurrentPage(1);
   };
 
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleQuantityChange = (productId: number, quantity: number) => {
@@ -108,7 +122,7 @@ const Boutique: React.FC = () => {
             <i className="fas fa-search text-4xl text-gray-300 mb-4"></i>
             <h3 className="text-xl font-semibold text-hd-secondary mb-2">Aucun produit trouvé</h3>
             <p className="text-hd-text">
-              {searchQuery 
+              {searchQuery
                 ? `Aucun produit ne correspond à "${searchQuery}"`
                 : 'Aucun produit dans cette catégorie'
               }
@@ -116,7 +130,7 @@ const Boutique: React.FC = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {filteredProducts.map((product) => (
+            {currentProducts.map((product) => (
               <div key={product.id} className="card-premium subtle-border product-card">
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -178,13 +192,31 @@ const Boutique: React.FC = () => {
       {filteredProducts.length > 0 && (
         <section className="pb-20 px-6 max-w-7xl mx-auto">
           <div className="flex justify-center gap-2">
-            <button className="px-4 py-2 rounded-lg border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white transition-all">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-4 py-2 rounded-lg border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <i className="fas fa-chevron-left"></i>
             </button>
-            <button className="px-4 py-2 rounded-lg bg-hd-primary text-white font-medium">1</button>
-            <button className="px-4 py-2 rounded-lg border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white transition-all">2</button>
-            <button className="px-4 py-2 rounded-lg border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white transition-all">3</button>
-            <button className="px-4 py-2 rounded-lg border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white transition-all">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  currentPage === page
+                    ? 'bg-hd-primary text-white'
+                    : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 rounded-lg border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <i className="fas fa-chevron-right"></i>
             </button>
           </div>
