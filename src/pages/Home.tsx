@@ -109,11 +109,11 @@ const Home: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
                 <span className="text-xs font-semibold text-hd-primary tracking-wide">Épicerie Premium en Haïti</span>
               </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-semibold text-hd-secondary leading-[1.15] tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-semibold text-hd-secondary leading-[1.15] tracking-tight">
                 Des produits <br />
                 <span className="text-hd-primary">d'exception</span> livrés chez vous
               </h1>
-              <p className="text-hd-text text-lg max-w-xl mx-auto lg:mx-0 mt-6 leading-relaxed">
+              <p className="text-hd-text text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 mt-4 sm:mt-6 leading-relaxed">
                 Produits frais, paniers sur mesure et livraison rapide. Découvrez la nouvelle façon de faire vos courses.
               </p>
             </div>
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
           <p className="text-hd-text max-w-2xl mx-auto mt-4">Des fruits frais aux produits du quotidien, tout est pensé pour votre confort.</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {productCategories.map((category, index) => (
             <Link key={index} to={category.href} className="block group">
               <div className="card-premium subtle-border cursor-pointer">
@@ -169,15 +169,15 @@ const Home: React.FC = () => {
                      category.title.includes('Alimentaires') ? 'Épicerie fine' : 'Soins & hygiène'}
                   </span>
                 </div>
-                <div className="p-6">
+                <div className="p-6 md:p-8">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-serif text-2xl font-semibold">{category.title}</h3>
-                      <p className="text-xs text-gray-500 mt-1">{category.description}</p>
+                      <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-semibold">{category.title}</h3>
+                      <p className="text-xs sm:text-sm text-gray-500 mt-1">{category.description}</p>
                     </div>
                     <i className={`fas ${category.icon} text-hd-primary text-xl`}></i>
                   </div>
-                  <p className="text-hd-text text-sm mt-3">
+                  <p className="text-hd-text text-xs sm:text-sm mt-2 sm:mt-3">
                     {category.title.includes('Frais') ? 'Sélection quotidienne de produits biologiques et locaux. Livraison garantie en moins de 24h.' :
                      category.title.includes('Alimentaires') ? 'Riz premium, pâtes authentiques, huile d\'olive extra vierge. L\'essentiel de votre garde-manger.' :
                      'Articles ménagers, soins essentiels, produits d\'entretien écologiques. Tout pour le foyer.'}
@@ -202,7 +202,7 @@ const Home: React.FC = () => {
             <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Nos Paniers Pré-faits</h2>
             <div className="section-divider"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {paniers.map((panier, index) => (
               <div
                 key={index}
@@ -220,10 +220,10 @@ const Home: React.FC = () => {
                     <i className={`fas ${panier.name.includes('Basic') ? 'fa-shopping-basket' : 
                                    panier.name.includes('Family') ? 'fa-crown' : 'fa-star'} 
                                    text-2xl text-hd-primary`}></i>
-                    <h3 className="font-serif text-2xl font-semibold mt-2">{panier.name}</h3>
+                    <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-semibold mt-2">{panier.name}</h3>
                   </div>
                   <div className="text-right">
-                    <span className="text-xl font-bold text-hd-primary">{panier.price.toLocaleString()}</span>
+                    <span className="text-lg sm:text-xl font-bold text-hd-primary">{panier.price.toLocaleString()}</span>
                     <span className="text-sm text-hd-muted"> HTG</span>
                     {panier.originalPrice && (
                       <div className="text-xs text-gray-400 line-through">{panier.originalPrice.toLocaleString()} HTG</div>
@@ -256,14 +256,14 @@ const Home: React.FC = () => {
 
       {/* Services */}
       <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 gap-6 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-center">
           {services.map((service, index) => (
             <div key={index} className="p-5">
               <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                 <i className={`fas ${service.icon} text-white text-2xl`}></i>
               </div>
-              <h4 className="font-semibold text-lg">{service.title}</h4>
-              <p className="text-sm text-hd-text">{service.description}</p>
+              <h4 className="font-semibold text-base sm:text-lg">{service.title}</h4>
+              <p className="text-xs sm:text-sm text-hd-text">{service.description}</p>
             </div>
           ))}
         </div>
@@ -273,9 +273,9 @@ const Home: React.FC = () => {
       <section className="py-16 px-6 bg-hd-light">
         <div className="max-w-5xl mx-auto text-center">
           <i className="fas fa-crown text-4xl text-hd-primary mb-3"></i>
-          <h2 className="font-serif text-4xl text-hd-secondary">Abonnement Premium</h2>
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-hd-secondary">Abonnement Premium</h2>
           <div className="w-24 h-0.5 bg-hd-primary mx-auto my-4"></div>
-          <p className="text-lg text-hd-text max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-hd-text max-w-2xl mx-auto">
             Recevez chaque semaine votre sélection personnalisée et bénéficiez de -3% sur tous vos achats
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-8">
@@ -296,8 +296,8 @@ const Home: React.FC = () => {
             <span className="text-hd-primary font-bold tracking-wider uppercase">
               <i className="far fa-comment"></i> Besoin d'aide ?
             </span>
-            <h3 className="font-serif text-3xl mt-2 text-hd-secondary">Notre équipe est à votre écoute</h3>
-            <p className="text-hd-text mt-3">
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl mt-2 text-hd-secondary">Notre équipe est à votre écoute</h3>
+            <p className="text-hd-text text-sm sm:text-base mt-3">
               Que ce soit par téléphone, email ou WhatsApp, nous répondons en quelques minutes.
             </p>
             <div className="mt-6 space-y-3">
