@@ -103,21 +103,21 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="hero-bg-pattern pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col items-center gap-8 lg:gap-12">
-            <div className="text-center lg:text-left w-full lg:w-1/2">
+          <div className="flex flex-col items-center gap-8">
+            <div className="text-center w-full">
               <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
                 <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
                 <span className="text-xs font-semibold text-hd-primary tracking-wide">Épicerie Premium en Haïti</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-semibold text-hd-secondary leading-[1.15] tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-hd-secondary leading-[1.15] tracking-tight">
                 Des produits <br />
                 <span className="text-hd-primary">d'exception</span> livrés chez vous
               </h1>
-              <p className="text-hd-text text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 mt-4 sm:mt-6 leading-relaxed">
+              <p className="text-hd-text text-sm sm:text-base md:text-lg max-w-xl mx-auto mt-4 sm:mt-6 leading-relaxed">
                 Produits frais, paniers sur mesure et livraison rapide. Découvrez la nouvelle façon de faire vos courses.
               </p>
             </div>
-            <div className="w-full lg:w-1/2">
+            <div className="w-full max-w-2xl">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
                 <img src={heroImage} alt="Assortiment artisanal" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
@@ -132,7 +132,7 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-4 justify-center w-full lg:w-1/2 lg:ml-auto">
+            <div className="flex flex-col gap-4 justify-center w-full max-w-md">
               <Link to="/boutique" className="w-full text-center bg-hd-primary text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary-dark">
                 Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
               </Link>
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
           <p className="text-hd-text max-w-2xl mx-auto mt-4">Des fruits frais aux produits du quotidien, tout est pensé pour votre confort.</p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
           {productCategories.map((category, index) => (
             <Link key={index} to={category.href} className="block group">
               <div className="card-premium subtle-border cursor-pointer">
@@ -202,7 +202,7 @@ const Home: React.FC = () => {
             <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Nos Paniers Pré-faits</h2>
             <div className="section-divider"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
             {paniers.map((panier, index) => (
               <div
                 key={index}
@@ -256,7 +256,7 @@ const Home: React.FC = () => {
 
       {/* Services */}
       <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 text-center max-w-2xl mx-auto">
+        <div className="grid grid-cols-2 gap-4 text-center max-w-md mx-auto">
           {services.map((service, index) => (
             <div key={index} className="p-5">
               <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
@@ -291,7 +291,7 @@ const Home: React.FC = () => {
 
       {/* Contact Section */}
       <section id="contact" className="bg-hd-light py-16 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
+        <div className="max-w-2xl mx-auto flex flex-col gap-12 items-center">
           <div className="flex-1 text-center lg:text-left">
             <span className="text-hd-primary font-bold tracking-wider uppercase">
               <i className="far fa-comment"></i> Besoin d'aide ?

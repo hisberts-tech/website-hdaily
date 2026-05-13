@@ -129,7 +129,7 @@ const Boutique: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 gap-4 max-w-2xl mx-auto">
             {currentProducts.map((product) => (
               <div key={product.id} className="card-premium subtle-border product-card">
                 <div className="relative h-48 overflow-hidden">
