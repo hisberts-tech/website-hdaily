@@ -199,19 +199,36 @@ const Boutique: React.FC = () => {
             >
               <i className="fas fa-chevron-left"></i>
             </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                  currentPage === page
-                    ? 'bg-hd-primary text-white'
-                    : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
+            <button
+              onClick={() => {setSelectedCategory('frais'); setCurrentPage(1);}}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                selectedCategory === 'frais'
+                  ? 'bg-hd-primary text-white'
+                  : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
                 }`}
-              >
-                {page}
-              </button>
-            ))}
+            >
+              1
+            </button>
+            <button
+              onClick={() => {setSelectedCategory('alimentaires'); setCurrentPage(1);}}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                selectedCategory === 'alimentaires'
+                  ? 'bg-hd-primary text-white'
+                  : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
+                }`}
+            >
+              2
+            </button>
+            <button
+              onClick={() => {setSelectedCategory('quotidiens'); setCurrentPage(1);}}
+              className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                selectedCategory === 'quotidiens'
+                  ? 'bg-hd-primary text-white'
+                  : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
+                }`}
+            >
+              3
+            </button>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
