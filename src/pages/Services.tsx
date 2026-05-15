@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProcessFlow from '../components/ProcessFlow';
 
 const Services: React.FC = () => {
+  const [expandedService, setExpandedService] = useState<string | null>(null);
   const services = [
     {
       icon: 'fas fa-truck',
@@ -162,22 +163,28 @@ const Services: React.FC = () => {
             </div>
             <h3 className="font-serif text-xl font-semibold text-hd-secondary mb-3">Livraison à domicile</h3>
             <p className="text-hd-text text-sm mb-4">Livraison rapide et fiable des produits frais à votre porte</p>
-            <a href="#livraison-details" className="text-hd-primary font-semibold hover:text-hd-primary-dark transition">
-              En savoir plus →
-            </a>
+            <button
+              onClick={() => setExpandedService(expandedService === 'livraison' ? null : 'livraison')}
+              className="text-hd-primary font-semibold hover:text-hd-primary-dark transition"
+            >
+              {expandedService === 'livraison' ? 'Moins de détails' : 'En savoir plus →'}
+            </button>
           </div>
-          
+
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
             <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-credit-card text-white text-2xl"></i>
             </div>
             <h3 className="font-serif text-xl font-semibold text-hd-secondary mb-3">Paiement flexible</h3>
             <p className="text-hd-text text-sm mb-4">Multiple options de paiement sécurisées pour votre confort</p>
-            <a href="#paiement-details" className="text-hd-primary font-semibold hover:text-hd-primary-dark transition">
-              En savoir plus →
-            </a>
+            <button
+              onClick={() => setExpandedService(expandedService === 'paiement' ? null : 'paiement')}
+              className="text-hd-primary font-semibold hover:text-hd-primary-dark transition"
+            >
+              {expandedService === 'paiement' ? 'Moins de détails' : 'En savoir plus →'}
+            </button>
           </div>
-          
+
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow border-2 border-hd-primary">
             <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-credit-card text-white text-2xl"></i>
@@ -187,36 +194,44 @@ const Services: React.FC = () => {
             </div>
             <h3 className="font-serif text-xl font-semibold text-hd-secondary mb-3">Credit service</h3>
             <p className="text-hd-text text-sm mb-4">Achetez maintenant et payez plus tard avec nos options de crédit</p>
-            <a href="#credit-details" className="text-hd-primary font-semibold hover:text-hd-primary-dark transition">
-              En savoir plus →
-            </a>
+            <button
+              onClick={() => setExpandedService(expandedService === 'credit' ? null : 'credit')}
+              className="text-hd-primary font-semibold hover:text-hd-primary-dark transition"
+            >
+              {expandedService === 'credit' ? 'Moins de détails' : 'En savoir plus →'}
+            </button>
           </div>
-          
+
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
             <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-crown text-white text-2xl"></i>
             </div>
             <h3 className="font-serif text-xl font-semibold text-hd-secondary mb-3">Abonnement</h3>
             <p className="text-hd-text text-sm mb-4">Service premium avec livraison régulière et réductions exclusives</p>
-            <a href="#abonnement-details" className="text-hd-primary font-semibold hover:text-hd-primary-dark transition">
-              En savoir plus →
-            </a>
+            <button
+              onClick={() => setExpandedService(expandedService === 'abonnement' ? null : 'abonnement')}
+              className="text-hd-primary font-semibold hover:text-hd-primary-dark transition"
+            >
+              {expandedService === 'abonnement' ? 'Moins de détails' : 'En savoir plus →'}
+            </button>
           </div>
         </div>
       </section>
 
       {/* Service Details */}
-      <section className="py-20 px-6 max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Détails des Services</h2>
-          <div className="section-divider"></div>
-          <p className="text-hd-text max-w-2xl mx-auto mt-4">
-            Explorez en détail chaque service et ses spécificités.
-          </p>
-        </div>
-        
-        {/* Livraison à domicile Details */}
-        <article id="livraison-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
+      {expandedService && (
+        <section className="py-20 px-6 max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Détails des Services</h2>
+            <div className="section-divider"></div>
+            <p className="text-hd-text max-w-2xl mx-auto mt-4">
+              Explorez en détail chaque service et ses spécificités.
+            </p>
+          </div>
+
+          {/* Livraison à domicile Details */}
+          {expandedService === 'livraison' && (
+            <article id="livraison-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
               <i className="fas fa-truck text-white text-xl"></i>
@@ -271,9 +286,11 @@ const Services: React.FC = () => {
             </p>
           </div>
         </article>
+          )}
 
         {/* Paiement flexible Details */}
-        <article id="paiement-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
+        {expandedService === 'paiement' && (
+          <article id="paiement-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
               <i className="fas fa-credit-card text-white text-xl"></i>
@@ -322,9 +339,11 @@ const Services: React.FC = () => {
             />
           </div>
         </article>
+          )}
 
         {/* Credit service Details */}
-        <article id="credit-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12 border-2 border-hd-primary">
+        {expandedService === 'credit' && (
+          <article id="credit-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12 border-2 border-hd-primary">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
               <i className="fas fa-credit-card text-white text-xl"></i>
@@ -398,9 +417,11 @@ const Services: React.FC = () => {
             </ul>
           </div>
         </article>
+          )}
 
         {/* Abonnement Details */}
-        <article id="abonnement-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
+        {expandedService === 'abonnement' && (
+          <article id="abonnement-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
               <i className="fas fa-crown text-white text-xl"></i>
@@ -465,7 +486,9 @@ const Services: React.FC = () => {
             </p>
           </div>
         </article>
-      </section>
+          )}
+        </section>
+      )}
 
       {/* Statistics Section */}
       <section className="py-20 px-6 bg-hd-light">
