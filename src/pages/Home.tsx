@@ -244,7 +244,11 @@ const Home: React.FC = () => {
                 </ul>
                 <button
                   onClick={() => handlePanierOrder(panier.name, panier.price)}
-                  className="mt-6 w-full py-2.5 rounded-full font-semibold shadow-md transition bg-hd-primary text-white hover:bg-hd-primary-dark"
+                  className={`mt-6 w-full py-2.5 rounded-full font-semibold shadow-md transition ${
+                    panier.name.includes('Basic')
+                      ? 'bg-hd-primary text-white hover:bg-hd-primary-dark'
+                      : 'bg-white border-2 border-hd-primary text-hd-primary hover:bg-hd-primary hover:text-white'
+                  }`}
                 >
                   Commander
                 </button>
