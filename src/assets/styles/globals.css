@@ -7,12 +7,23 @@
     @apply box-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     @apply font-sans bg-hd-cream text-hd-secondary antialiased;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, .serif-heading {
     @apply font-serif font-medium tracking-tight;
+  }
+
+  /* Smooth page load */
+  #root {
+    animation: pageLoad 0.4s ease-out;
   }
 }
 
@@ -56,6 +67,16 @@
   .text-gradient {
     @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark bg-clip-text text-transparent;
   }
+
+  /* Responsive container helper */
+  .responsive-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Responsive section padding */
+  .section-padding {
+    @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  }
 }
 
 @layer utilities {
@@ -70,6 +91,13 @@
   .animate-bounce-in {
     animation: bounceIn 0.6s ease-out;
   }
+
+  /* Stagger animation delays for child elements */
+  .stagger-children > *:nth-child(1) { animation-delay: 0s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.4s; }
 }
 
 @keyframes fadeIn {
@@ -100,5 +128,16 @@
   100% { 
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -12,7 +12,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onCartClick }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { getTotalItems } = useCart();
-    const location = useLocation();
+  const location = useLocation();
+
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
+  };
 
   const navigation = [
     { name: 'Accueil', href: '/', icon: 'fa-home' },
@@ -45,9 +50,9 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
     <>
       {/* Desktop Header */}
       <header className="hidden md:block w-full bg-white/95 backdrop-blur-sm border-b border-hd-border sticky top-0 z-40 transition-all shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-3">
             <img src={logo} alt="H-Daily Logo" className="h-32 w-auto" />
           </Link>
           
@@ -101,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
       <header className="md:hidden w-full bg-white/95 backdrop-blur-sm border-b border-hd-border sticky top-0 z-40 transition-all shadow-sm">
         <div className="px-4 py-3 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2">
             <img src={logo} alt="H-Daily Logo" className="h-28 w-auto" />
           </Link>
           

@@ -138,29 +138,29 @@ const Abonnement: React.FC = () => {
   return (
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
-            <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Abonnement</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif text-hd-secondary leading-[1.15]">
-            L'<span className="text-hd-primary">abonnement</span> H-Daily
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif text-hd-secondary leading-[1.1]">
+            L'<span className="text-transparent bg-clip-text bg-gradient-to-r from-hd-primary to-emerald-600">abonnement</span> H-Daily
           </h1>
-          <p className="text-hd-text text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+          <p className="text-hd-text text-lg xl:text-2xl max-w-3xl mx-auto mt-6 xl:mt-8 leading-relaxed font-light">
             Recevez des paniers frais régulièrement avec des avantages exclusifs et un service premium.
           </p>
         </div>
       </section>
 
       {/* Features Overview */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Avantages exclusifs</h2>
-          <div className="section-divider"></div>
+      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Avantages exclusifs</h2>
+          <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full">
           <div className="text-center">
             <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-truck text-white text-2xl"></i>
@@ -188,22 +188,22 @@ const Abonnement: React.FC = () => {
       </section>
 
       {/* Subscription Plans */}
-      <section className="py-20 px-6 bg-hd-light">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Choisissez votre plan</h2>
-            <div className="section-divider"></div>
-            <p className="text-hd-text max-w-2xl mx-auto mt-4">
+      <section className="py-24 px-6 bg-gradient-to-b from-hd-light to-hd-cream border-y border-hd-border/50">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Choisissez votre plan</h2>
+            <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
+            <p className="text-hd-text text-lg lg:text-xl max-w-3xl mx-auto mt-4">
               Des plans flexibles adaptés à tous les budgets et besoins
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full mb-16">
             {subscriptionPlans.map((plan) => (
               <div
                 key={plan.id}
                 className={`card-premium subtle-border flex flex-col relative cursor-pointer transition-all ${
-                  selectedPlan === plan.id ? 'ring-2 ring-hd-primary transform scale-105' : ''
+                  selectedPlan === plan.id ? 'ring-2 ring-hd-primary transform lg:scale-105' : ''
                 } ${plan.popular ? 'ring-1 ring-hd-primary/40' : ''}`}
                 onClick={() => handlePlanSelect(plan.id)}
               >

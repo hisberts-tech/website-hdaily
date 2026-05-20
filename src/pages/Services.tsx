@@ -131,32 +131,32 @@ const Services: React.FC = () => {
   return (
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
-            <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Services</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif text-hd-secondary leading-[1.15]">
-            Nos <span className="text-hd-primary">services</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif text-hd-secondary leading-[1.1]">
+            Nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-hd-primary to-emerald-600">services</span>
           </h1>
-          <p className="text-hd-text text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+          <p className="text-hd-text text-lg xl:text-2xl max-w-3xl mx-auto mt-6 xl:mt-8 leading-relaxed font-light">
             Découvrez tous les services que H-Daily propose pour faciliter votre quotidien.
           </p>
         </div>
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
+      <section className="py-24 px-6 max-w-[1600px] mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Nos Services</h2>
-          <div className="section-divider"></div>
-          <p className="text-hd-text max-w-2xl mx-auto mt-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Nos Services</h2>
+          <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
+          <p className="text-hd-text text-lg lg:text-xl max-w-3xl mx-auto mt-4">
             Découvrez les différents services que H-Daily propose pour faciliter votre quotidien.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 w-full">
           <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
             <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-truck text-white text-2xl"></i>
@@ -491,104 +491,104 @@ const Services: React.FC = () => {
       )}
 
       {/* Statistics Section */}
-      <section className="py-20 px-6 bg-hd-light">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Nos réalisations</h2>
-            <div className="section-divider"></div>
-            <p className="text-hd-text max-w-2xl mx-auto mt-4">
+      <section className="py-24 px-6 bg-hd-light">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Nos réalisations</h2>
+            <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
+            <p className="text-hd-text text-lg xl:text-xl max-w-3xl mx-auto mt-4">
               Des chiffres qui témoignent de notre engagement et de la confiance de nos clients
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 w-full">
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-hd-primary mb-2">10,000+</div>
-              <p className="text-hd-secondary font-medium">Clients satisfaits</p>
+              <div className="text-5xl md:text-6xl font-bold text-hd-primary mb-3">10k+</div>
+              <p className="text-hd-secondary font-medium text-lg">Clients satisfaits</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-hd-primary mb-2">50,000+</div>
-              <p className="text-hd-secondary font-medium">Livraisons effectuées</p>
+              <div className="text-5xl md:text-6xl font-bold text-hd-primary mb-3">50k+</div>
+              <p className="text-hd-secondary font-medium text-lg">Livraisons effectuées</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-hd-primary mb-2">98%</div>
-              <p className="text-hd-secondary font-medium">Taux de satisfaction</p>
+              <div className="text-5xl md:text-6xl font-bold text-hd-primary mb-3">98%</div>
+              <p className="text-hd-secondary font-medium text-lg">Taux de satisfaction</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-hd-primary mb-2">24h</div>
-              <p className="text-hd-secondary font-medium">Livraison garantie</p>
+              <div className="text-5xl md:text-6xl font-bold text-hd-primary mb-3">24h</div>
+              <p className="text-hd-secondary font-medium text-lg">Livraison garantie</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Témoignages clients</h2>
-          <div className="section-divider"></div>
-          <p className="text-hd-text max-w-2xl mx-auto mt-4">
+      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Témoignages clients</h2>
+          <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
+          <p className="text-hd-text text-lg xl:text-xl max-w-3xl mx-auto mt-4">
             Ce que nos clients disent de nos services
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
-                <span className="text-white font-bold">JD</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full">
+          <div className="bg-white rounded-2xl p-8 shadow-lg subtle-border hover:-translate-y-2 transition-transform duration-300">
+            <div className="flex items-center mb-6">
+              <div className="w-14 h-14 bg-hd-primary rounded-full flex items-center justify-center mr-4 shadow-md">
+                <span className="text-white font-bold text-xl">JD</span>
               </div>
               <div>
-                <h4 className="font-semibold text-hd-secondary">Jean Dupont</h4>
+                <h4 className="font-semibold text-lg text-hd-secondary">Jean Dupont</h4>
                 <p className="text-sm text-hd-text">Client abonné</p>
               </div>
             </div>
-            <div className="flex mb-3">
+            <div className="flex mb-4">
               {[...Array(5)].map((_, i) => (
-                <i key={i} className="fas fa-star text-yellow-400"></i>
+                <i key={i} className="fas fa-star text-yellow-400 text-sm mr-1"></i>
               ))}
             </div>
-            <p className="text-hd-text italic">
+            <p className="text-hd-text italic text-lg leading-relaxed">
               "Le service d'abonnement a transformé mon quotidien. Produits toujours frais, livraison ponctuelle et économies substantielles. Je recommande vivement!"
             </p>
           </div>
           
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
-                <span className="text-white font-bold">MP</span>
+          <div className="bg-white rounded-2xl p-8 shadow-lg subtle-border hover:-translate-y-2 transition-transform duration-300">
+            <div className="flex items-center mb-6">
+              <div className="w-14 h-14 bg-hd-primary rounded-full flex items-center justify-center mr-4 shadow-md">
+                <span className="text-white font-bold text-xl">MP</span>
               </div>
               <div>
-                <h4 className="font-semibold text-hd-secondary">Marie Pierre</h4>
+                <h4 className="font-semibold text-lg text-hd-secondary">Marie Pierre</h4>
                 <p className="text-sm text-hd-text">Mère de famille</p>
               </div>
             </div>
-            <div className="flex mb-3">
+            <div className="flex mb-4">
               {[...Array(5)].map((_, i) => (
-                <i key={i} className="fas fa-star text-yellow-400"></i>
+                <i key={i} className="fas fa-star text-yellow-400 text-sm mr-1"></i>
               ))}
             </div>
-            <p className="text-hd-text italic">
+            <p className="text-hd-text italic text-lg leading-relaxed">
               "La livraison à domicile est un vrai gain de temps. Plus besoin de faire les courses, tout vient à moi. Les produits sont toujours de qualité supérieure."
             </p>
           </div>
           
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
-                <span className="text-white font-bold">PJ</span>
+          <div className="bg-white rounded-2xl p-8 shadow-lg subtle-border hover:-translate-y-2 transition-transform duration-300">
+            <div className="flex items-center mb-6">
+              <div className="w-14 h-14 bg-hd-primary rounded-full flex items-center justify-center mr-4 shadow-md">
+                <span className="text-white font-bold text-xl">PJ</span>
               </div>
               <div>
-                <h4 className="font-semibold text-hd-secondary">Paul Joseph</h4>
+                <h4 className="font-semibold text-lg text-hd-secondary">Paul Joseph</h4>
                 <p className="text-sm text-hd-text">Entrepreneur</p>
               </div>
             </div>
-            <div className="flex mb-3">
+            <div className="flex mb-4">
               {[...Array(5)].map((_, i) => (
-                <i key={i} className="fas fa-star text-yellow-400"></i>
+                <i key={i} className="fas fa-star text-yellow-400 text-sm mr-1"></i>
               ))}
             </div>
-            <p className="text-hd-text italic">
+            <p className="text-hd-text italic text-lg leading-relaxed">
               "Le service de crédit m'a permis de gérer mon budget efficacement. Processus simple, approbation rapide et conditions transparentes. Excellent service!"
             </p>
           </div>
@@ -596,12 +596,12 @@ const Services: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 bg-hd-light">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Questions fréquentes</h2>
-            <div className="section-divider"></div>
-            <p className="text-hd-text max-w-2xl mx-auto mt-4">
+      <section className="py-24 px-6 bg-gradient-to-b from-hd-light to-hd-cream">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Questions fréquentes</h2>
+            <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
+            <p className="text-hd-text text-lg xl:text-xl max-w-3xl mx-auto mt-4">
               Tout ce que vous devez savoir sur nos services
             </p>
           </div>
@@ -659,49 +659,55 @@ const Services: React.FC = () => {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-hd-secondary to-gray-800 text-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-serif mb-4">Prêt à bénéficier de nos services?</h2>
-          <p className="text-lg opacity-90 mb-8 max-w-3xl mx-auto">
+      <section className="py-24 px-6 bg-white border-t border-hd-border">
+        <div className="max-w-[1400px] mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary mb-6">Prêt à bénéficier de nos services?</h2>
+          <p className="text-lg xl:text-xl text-hd-text mb-16 max-w-3xl mx-auto leading-relaxed">
             Rejoignez des milliers de clients satisfaits qui font confiance à H-Daily pour leurs besoins quotidiens. 
             Contactez-nous dès maintenant pour en savoir plus sur nos services et commencer à profiter de tous nos avantages.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <i className="fas fa-phone text-3xl mb-4"></i>
-              <h3 className="font-semibold text-xl mb-2">Par téléphone</h3>
-              <p className="mb-4 opacity-90">Appelez-nous pour une consultation immédiate</p>
-              <a href="tel:+50939134651" className="inline-block bg-white text-hd-secondary px-6 py-2 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 w-full">
+            <div className="bg-hd-light rounded-2xl p-8 shadow-sm border border-hd-border hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-hd-primary">
+                <i className="fas fa-phone text-3xl"></i>
+              </div>
+              <h3 className="font-serif text-2xl font-semibold text-hd-secondary mb-3">Par téléphone</h3>
+              <p className="mb-6 text-hd-text">Appelez-nous pour une consultation immédiate</p>
+              <a href="tel:+50939134651" className="inline-block bg-white border-2 border-hd-primary text-hd-primary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
                 +509 3913 4651
               </a>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <i className="fab fa-whatsapp text-3xl mb-4"></i>
-              <h3 className="font-semibold text-xl mb-2">Par WhatsApp</h3>
-              <p className="mb-4 opacity-90">Réponse rapide en quelques minutes</p>
-              <a href="https://wa.me/50939134651" className="inline-block bg-white text-hd-secondary px-6 py-2 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
+            <div className="bg-hd-light rounded-2xl p-8 shadow-sm border border-hd-border hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-hd-primary">
+                <i className="fab fa-whatsapp text-4xl"></i>
+              </div>
+              <h3 className="font-serif text-2xl font-semibold text-hd-secondary mb-3">Par WhatsApp</h3>
+              <p className="mb-6 text-hd-text">Réponse rapide en quelques minutes</p>
+              <a href="https://wa.me/50939134651" className="inline-block bg-[#25D366] text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-[#128C7E] transition">
                 Démarrer chat
               </a>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <i className="fas fa-envelope text-3xl mb-4"></i>
-              <h3 className="font-semibold text-xl mb-2">Par email</h3>
-              <p className="mb-4 opacity-90">Pour les demandes détaillées</p>
-              <a href="mailto:contact@hdaily.ht" className="inline-block bg-white text-hd-secondary px-6 py-2 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
+            <div className="bg-hd-light rounded-2xl p-8 shadow-sm border border-hd-border hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-hd-primary">
+                <i className="far fa-envelope text-3xl"></i>
+              </div>
+              <h3 className="font-serif text-2xl font-semibold text-hd-secondary mb-3">Par email</h3>
+              <p className="mb-6 text-hd-text">Pour les demandes détaillées</p>
+              <a href="mailto:contact@hdaily.ht" className="inline-block bg-white border-2 border-hd-primary text-hd-primary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
                 Nous écrire
               </a>
             </div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="/boutique" className="btn-primary bg-white text-hd-secondary hover:bg-hd-primary hover:text-white">
-              <i className="fas fa-shopping-cart mr-2"></i> Commander maintenant
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="/boutique" className="btn-primary flex justify-center items-center">
+              <i className="fas fa-shopping-cart mr-3"></i> Commander maintenant
             </a>
-            <a href="/abonnement" className="btn-outline border-white text-white hover:bg-white hover:text-hd-secondary">
-              <i className="fas fa-crown mr-2"></i> S'abonner
+            <a href="/abonnement" className="btn-secondary flex justify-center items-center">
+              <i className="fas fa-crown mr-3"></i> S'abonner
             </a>
           </div>
         </div>

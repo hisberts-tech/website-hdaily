@@ -3,6 +3,7 @@ import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
 import { NotificationProvider } from './context/NotificationContext';
 import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Boutique from './pages/Boutique';
 import Paniers from './pages/Paniers';
@@ -16,6 +17,7 @@ function App() {
       <ProductProvider>
         <CartProvider>
           <Layout>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/boutique" element={<Boutique />} />

@@ -68,25 +68,25 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
-            <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Contact</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif text-hd-secondary leading-[1.15]">
-            Restons en <span className="text-hd-primary">contact</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif text-hd-secondary leading-[1.1]">
+            Restons en <span className="text-transparent bg-clip-text bg-gradient-to-r from-hd-primary to-emerald-600">contact</span>
           </h1>
-          <p className="text-hd-text text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+          <p className="text-hd-text text-lg xl:text-2xl max-w-3xl mx-auto mt-6 xl:mt-8 leading-relaxed font-light">
             Notre équipe est à votre disposition pour répondre à toutes vos questions.
           </p>
         </div>
       </section>
 
       {/* Contact Form & Map */}
-      <section className="py-20 px-6 bg-hd-light">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="py-24 px-6 bg-hd-light">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24">
             {/* Contact Form */}
             <div>
               <h2 className="text-3xl font-serif text-hd-secondary mb-6">Envoyez-nous un message</h2>
@@ -164,14 +164,14 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-serif text-hd-secondary mb-4">Différentes façons de nous contacter</h2>
-          <p className="text-hd-text text-lg max-w-2xl mx-auto">
+      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-serif text-hd-secondary mb-4">Différentes façons de nous contacter</h2>
+          <p className="text-hd-text text-lg xl:text-xl max-w-3xl mx-auto">
             Choisissez la méthode qui vous convient le mieux pour nous joindre rapidement.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {contactInfo.map((info, index) => (
             <a
               key={index}

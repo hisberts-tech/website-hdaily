@@ -35,11 +35,15 @@ const Footer: React.FC = () => {
         }}></div>
       </div>
       
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <div className="relative max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6 animate-fade-in">
-            <Link to="/" className="inline-block group">
+            <Link 
+              to="/" 
+              className="inline-block group"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
               <div className="relative">
                 <img src={logo} alt="H-Daily Logo" className="h-20 w-auto transition-transform duration-300 group-hover:scale-105" />
                 <div className="absolute -inset-1 bg-hd-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

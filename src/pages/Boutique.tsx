@@ -63,16 +63,16 @@ const Boutique: React.FC = () => {
   return (
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
-      <section className="pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
-            <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
+      <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Boutique</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif text-hd-secondary leading-[1.15]">
-            Découvrez nos <span className="text-hd-primary">produits</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif text-hd-secondary leading-[1.1]">
+            Découvrez nos <span className="text-transparent bg-clip-text bg-gradient-to-r from-hd-primary to-emerald-600">produits</span>
           </h1>
-          <p className="text-hd-text text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+          <p className="text-hd-text text-lg xl:text-2xl max-w-3xl mx-auto mt-6 xl:mt-8 leading-relaxed font-light">
             Découvrez notre sélection complète de produits premium pour tous vos besoins quotidiens.
           </p>
           
@@ -93,10 +93,10 @@ const Boutique: React.FC = () => {
       </section>
 
       {/* Category Filters */}
-      <section className="pb-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-serif text-hd-secondary mb-4">Catégories</h2>
-          <p className="text-hd-text">Parcourez nos produits par catégorie</p>
+      <section className="pb-12 xl:pb-20 px-6 max-w-[1600px] mx-auto mt-12 xl:mt-16">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl xl:text-4xl font-serif text-hd-secondary mb-4">Catégories</h2>
+          <p className="text-hd-text text-lg">Parcourez nos produits par catégorie</p>
         </div>
         <div className="flex flex-wrap justify-center gap-3">
           {categories.map((category) => (
@@ -116,12 +116,12 @@ const Boutique: React.FC = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="pb-20 px-6 max-w-7xl mx-auto">
+      <section className="pb-24 px-6 max-w-[1600px] mx-auto">
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-12">
-            <i className="fas fa-search text-4xl text-gray-300 mb-4"></i>
-            <h3 className="text-xl font-semibold text-hd-secondary mb-2">Aucun produit trouvé</h3>
-            <p className="text-hd-text">
+          <div className="text-center py-16 xl:py-24 bg-white rounded-3xl shadow-sm border border-hd-border max-w-4xl mx-auto">
+            <i className="fas fa-search text-5xl text-gray-300 mb-6"></i>
+            <h3 className="text-2xl font-semibold text-hd-secondary mb-3">Aucun produit trouvé</h3>
+            <p className="text-hd-text text-lg">
               {searchQuery
                 ? `Aucun produit ne correspond à "${searchQuery}"`
                 : 'Aucun produit dans cette catégorie'
@@ -129,7 +129,7 @@ const Boutique: React.FC = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 xl:gap-8 w-full">
             {currentProducts.map((product) => (
               <div key={product.id} className="card-premium subtle-border product-card">
                 <div className="relative h-48 overflow-hidden">

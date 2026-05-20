@@ -101,59 +101,66 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-bg-pattern pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-col items-center gap-8">
-            <div className="text-center w-full">
-              <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-4 py-1.5 border border-hd-primary/20 mb-5">
-                <span className="w-2 h-2 rounded-full bg-hd-primary"></span>
-                <span className="text-xs font-semibold text-hd-primary tracking-wide">Épicerie Premium en Haïti</span>
+      <section className="hero-bg-pattern pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 xl:gap-24">
+            <div className="text-center lg:text-left w-full lg:w-[45%] z-10">
+              <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 lg:mb-8 shadow-sm">
+                <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
+                <span className="text-xs sm:text-sm font-semibold text-hd-primary tracking-wide uppercase">Épicerie Premium en Haïti</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-hd-secondary leading-[1.15] tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-semibold text-hd-secondary leading-[1.1] tracking-tight">
                 Des produits <br />
-                <span className="text-hd-primary">d'exception</span> livrés chez vous
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hd-primary to-emerald-600">d'exception</span> <br className="hidden lg:block"/> livrés chez vous
               </h1>
-              <p className="text-hd-text text-sm sm:text-base md:text-lg max-w-xl mx-auto mt-4 sm:mt-6 leading-relaxed">
-                Produits frais, paniers sur mesure et livraison rapide. Découvrez la nouvelle façon de faire vos courses.
+              <p className="text-hd-text text-base sm:text-lg md:text-xl xl:text-2xl max-w-2xl mx-auto lg:mx-0 mt-6 sm:mt-8 leading-relaxed font-light">
+                Produits frais, paniers sur mesure et livraison rapide. Découvrez la nouvelle façon de faire vos courses en Haïti, sans compromis sur la qualité.
               </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full mt-10 xl:mt-12">
+                <Link to="/boutique" className="text-center bg-hd-primary text-white px-8 py-4 xl:px-10 xl:py-5 rounded-full font-semibold text-lg xl:text-xl shadow-[0_10px_40px_-10px_rgba(16,185,129,0.5)] transition-all hover:bg-hd-primary-dark hover:-translate-y-1">
+                  Explorer le menu <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </Link>
+                <a href="#paniers" className="text-center bg-white border-2 border-hd-primary text-hd-primary px-8 py-4 xl:px-10 xl:py-5 rounded-full font-semibold text-lg xl:text-xl transition-all hover:bg-hd-primary hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  Voir nos coffrets
+                </a>
+              </div>
             </div>
-            <div className="w-full max-w-2xl">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-                <img src={heroImage} alt="Assortiment artisanal" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[11px] font-bold text-hd-primary shadow-sm">
-                  Livraison 24h
+            <div className="w-full lg:w-[55%] max-w-2xl lg:max-w-none mx-auto relative">
+              <div className="absolute -inset-4 bg-gradient-to-r from-hd-primary/20 to-emerald-300/20 rounded-[2rem] blur-2xl transform rotate-3 scale-105 opacity-60"></div>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] xl:aspect-[16/10] border-8 border-white/50 backdrop-blur-sm">
+                <img src={heroImage} alt="Assortiment artisanal" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700 ease-out" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full text-sm font-bold text-hd-primary shadow-xl flex items-center gap-2">
+                  <i className="fas fa-bolt text-yellow-500"></i> Livraison 24h
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 text-center">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 inline-block">
-                    <p className="text-hd-secondary font-medium text-xs uppercase tracking-wide">Assortiment premium</p>
-                    <p className="text-hd-text text-xs mt-1">Fruits tropicaux, épices & produits frais</p>
+                <div className="absolute bottom-6 left-6 right-6 flex justify-center">
+                  <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-2xl flex items-center gap-4 border border-white/50 w-full max-w-md">
+                    <div className="w-12 h-12 bg-hd-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <i className="fas fa-leaf text-hd-primary text-xl"></i>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-hd-secondary font-bold text-sm sm:text-base uppercase tracking-wider">Assortiment premium</p>
+                      <p className="text-hd-text text-sm mt-1">Fruits tropicaux, épices & produits frais</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col gap-4 justify-center w-full max-w-md">
-              <Link to="/boutique" className="w-full text-center bg-hd-primary text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary-dark">
-                Explorer le menu <i className="fas fa-arrow-right ml-2"></i>
-              </Link>
-              <a href="#paniers" className="w-full text-center bg-white border-2 border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white">
-                Voir nos coffrets
-              </a>
             </div>
           </div>
         </div>
       </section>
 
       {/* Product Categories */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Notre sélection</span>
-          <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Produits d'excellence</h2>
-          <div className="section-divider"></div>
-          <p className="text-hd-text max-w-2xl mx-auto mt-4">Des fruits frais aux produits du quotidien, tout est pensé pour votre confort.</p>
+      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-sm md:text-base uppercase tracking-[0.3em] text-hd-primary font-bold">Notre sélection</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary mt-3">Produits d'excellence</h2>
+          <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
+          <p className="text-hd-text text-lg lg:text-xl max-w-3xl mx-auto mt-4">Des fruits frais aux produits du quotidien, tout est pensé pour votre confort et une qualité sans compromis.</p>
         </div>
         
-        <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
           {productCategories.map((category, index) => (
             <Link key={index} to={category.href} className="block group">
               <div className="card-premium subtle-border cursor-pointer">
@@ -182,8 +189,8 @@ const Home: React.FC = () => {
                      category.title.includes('Alimentaires') ? 'Riz premium, pâtes authentiques, huile d\'olive extra vierge. L\'essentiel de votre garde-manger.' :
                      'Articles ménagers, soins essentiels, produits d\'entretien écologiques. Tout pour le foyer.'}
                   </p>
-                  <div className="mt-5 w-full py-2.5 border border-gray-200 rounded-full text-sm font-medium text-hd-secondary group-hover:bg-hd-primary group-hover:text-white transition-all inline-block text-center cursor-pointer">
-                    Découvrir →
+                  <div className="mt-5 w-full py-3 border border-gray-200 rounded-full text-base font-medium text-hd-secondary group-hover:bg-hd-primary group-hover:text-white transition-all inline-block text-center cursor-pointer">
+                    Découvrir la sélection <i className="fas fa-arrow-right ml-2 opacity-0 group-hover:opacity-100 transition-opacity"></i>
                   </div>
                 </div>
               </div>
@@ -193,21 +200,21 @@ const Home: React.FC = () => {
       </section>
 
       {/* Paniers Pré-faits */}
-      <section id="paniers" className="bg-hd-light py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="text-sm uppercase tracking-widest text-hd-primary font-bold">
-              <i className="fas fa-gift"></i> Idéal pour toutes les occasions
+      <section id="paniers" className="bg-gradient-to-b from-hd-light to-hd-cream py-24">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <span className="text-sm md:text-base uppercase tracking-[0.3em] text-hd-primary font-bold">
+              <i className="fas fa-gift mr-2"></i> Idéal pour toutes les occasions
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Nos Paniers Pré-faits</h2>
-            <div className="section-divider"></div>
+            <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary mt-3">Nos Paniers Pré-faits</h2>
+            <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
             {paniers.map((panier, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl shadow-lg card-premium p-6 flex flex-col relative ${
-                  panier.popular ? 'ring-1 ring-hd-primary/40 transform scale-105' : ''
+                className={`bg-white rounded-2xl shadow-lg card-premium p-6 flex flex-col relative transition-transform ${
+                  panier.popular ? 'ring-1 ring-hd-primary/40 lg:transform lg:scale-105 z-10' : ''
                 }`}
               >
                 {panier.popular && (
@@ -259,8 +266,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* Services */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 gap-4 text-center max-w-md mx-auto">
+      <section className="py-24 max-w-[1600px] mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center w-full">
           {services.map((service, index) => (
             <div key={index} className="p-5">
               <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
@@ -274,19 +281,21 @@ const Home: React.FC = () => {
       </section>
 
       {/* Subscription CTA */}
-      <section className="py-16 px-6 bg-hd-light">
-        <div className="max-w-5xl mx-auto text-center">
-          <i className="fas fa-crown text-4xl text-hd-primary mb-3"></i>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-hd-secondary">Abonnement Premium</h2>
-          <div className="w-24 h-0.5 bg-hd-primary mx-auto my-4"></div>
-          <p className="text-sm sm:text-base md:text-lg text-hd-text max-w-2xl mx-auto">
-            Recevez chaque semaine votre sélection personnalisée et bénéficiez de -3% sur tous vos achats
+      <section className="py-24 px-6 bg-gradient-to-r from-hd-secondary to-gray-900 relative overflow-hidden text-white">
+        <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        <div className="max-w-[1200px] mx-auto text-center relative z-10">
+          <div className="w-20 h-20 bg-hd-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border border-hd-primary/50 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+            <i className="fas fa-crown text-4xl text-hd-primary"></i>
+          </div>
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-white mb-6">L'Abonnement Premium</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+            Recevez chaque semaine votre sélection personnalisée et bénéficiez de -20% sur tous vos achats. L'excellence livrée à votre porte.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <Link to="/abonnement" className="btn-primary">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+            <Link to="/abonnement" className="bg-hd-primary text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-hd-primary-dark transition-all hover:scale-105 shadow-[0_10px_40px_-10px_rgba(16,185,129,0.5)]">
               S'abonner dès maintenant
             </Link>
-            <a href="#contact" className="bg-white border-2 border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white">
+            <a href="#contact" className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-hd-secondary transition-all">
               En savoir plus
             </a>
           </div>
@@ -294,14 +303,14 @@ const Home: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="bg-hd-light py-16 px-6">
-        <div className="max-w-2xl mx-auto flex flex-col gap-12 items-center">
+      <section id="contact" className="bg-gradient-to-b from-hd-cream to-white py-24 px-6 border-t border-hd-border">
+        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-16 xl:gap-24 items-center">
           <div className="flex-1 text-center lg:text-left">
-            <span className="text-hd-primary font-bold tracking-wider uppercase">
-              <i className="far fa-comment"></i> Besoin d'aide ?
+            <span className="inline-flex items-center gap-2 text-hd-primary font-bold tracking-[0.2em] uppercase text-sm mb-4">
+              <i className="far fa-comment-dots text-xl"></i> Besoin d'aide ?
             </span>
-            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl mt-2 text-hd-secondary">Notre équipe est à votre écoute</h3>
-            <p className="text-hd-text text-sm sm:text-base mt-3">
+            <h3 className="font-serif text-4xl sm:text-5xl lg:text-6xl mt-2 text-hd-secondary leading-tight">Notre équipe est à votre écoute</h3>
+            <p className="text-hd-text text-lg xl:text-xl mt-6 leading-relaxed">
               Que ce soit par téléphone, email ou WhatsApp, nous répondons en quelques minutes.
             </p>
             <div className="mt-6 space-y-3">
