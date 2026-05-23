@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
       <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
           <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
             <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Contact</span>
@@ -85,7 +85,7 @@ const Contact: React.FC = () => {
 
       {/* Contact Form & Map */}
       <section className="py-24 px-6 bg-hd-light">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24">
             {/* Contact Form */}
             <div>
@@ -164,7 +164,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+      <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif text-hd-secondary mb-4">Différentes façons de nous contacter</h2>
           <p className="text-hd-text text-lg xl:text-xl max-w-3xl mx-auto">
@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-6 max-w-4xl mx-auto">
+      <section className="py-20 px-6 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Questions fréquentes</h2>
           <div className="section-divider"></div>
@@ -212,7 +212,7 @@ const Contact: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-20 px-6 bg-gradient-to-r from-hd-secondary to-gray-800 text-white">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">Prêt à commander?</h2>
           <p className="text-lg opacity-90 mb-8">
             Contactez-nous dès maintenant pour passer votre commande ou obtenir plus d'informations.

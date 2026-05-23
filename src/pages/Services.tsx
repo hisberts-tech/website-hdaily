@@ -132,7 +132,7 @@ const Services: React.FC = () => {
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
       <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
           <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
             <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Services</span>
@@ -147,7 +147,7 @@ const Services: React.FC = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+      <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Nos Services</h2>
           <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
@@ -220,7 +220,7 @@ const Services: React.FC = () => {
 
       {/* Service Details */}
       {expandedService && (
-        <section className="py-20 px-6 max-w-4xl mx-auto">
+        <section className="py-20 px-6 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Détails des Services</h2>
             <div className="section-divider"></div>
@@ -492,7 +492,7 @@ const Services: React.FC = () => {
 
       {/* Statistics Section */}
       <section className="py-24 px-6 bg-hd-light">
-        <div className="max-w-[1600px] mx-auto">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Nos réalisations</h2>
             <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
@@ -523,7 +523,7 @@ const Services: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+      <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Témoignages clients</h2>
           <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
@@ -597,7 +597,7 @@ const Services: React.FC = () => {
 
       {/* FAQ Section */}
       <section className="py-24 px-6 bg-gradient-to-b from-hd-light to-hd-cream">
-        <div className="max-w-[1200px] mx-auto">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">Questions fréquentes</h2>
             <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
@@ -659,8 +659,8 @@ const Services: React.FC = () => {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="py-24 px-6 bg-white border-t border-hd-border">
-        <div className="max-w-[1400px] mx-auto text-center">
+      <section className="py-24 px-6 bg-gradient-to-b from-hd-cream to-white border-t border-hd-border">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary mb-6">Prêt à bénéficier de nos services?</h2>
           <p className="text-lg xl:text-xl text-hd-text mb-16 max-w-3xl mx-auto leading-relaxed">
             Rejoignez des milliers de clients satisfaits qui font confiance à H-Daily pour leurs besoins quotidiens. 
@@ -668,35 +668,35 @@ const Services: React.FC = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 w-full">
-            <div className="bg-hd-light rounded-2xl p-8 shadow-sm border border-hd-border hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-hd-primary">
-                <i className="fas fa-phone text-3xl"></i>
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-hd-border/50">
+              <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-6 text-white shadow-md group-hover:scale-110 transition-transform">
+                <i className="fas fa-phone text-2xl"></i>
               </div>
               <h3 className="font-serif text-2xl font-semibold text-hd-secondary mb-3">Par téléphone</h3>
               <p className="mb-6 text-hd-text">Appelez-nous pour une consultation immédiate</p>
-              <a href="tel:+50939134651" className="inline-block bg-white border-2 border-hd-primary text-hd-primary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
+              <a href="tel:+50939134651" className="inline-block bg-white border-2 border-hd-primary text-hd-primary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition-all">
                 +509 3913 4651
               </a>
             </div>
             
-            <div className="bg-hd-light rounded-2xl p-8 shadow-sm border border-hd-border hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-hd-primary">
-                <i className="fab fa-whatsapp text-4xl"></i>
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-hd-border/50">
+              <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-6 text-white shadow-md group-hover:scale-110 transition-transform">
+                <i className="fab fa-whatsapp text-3xl"></i>
               </div>
               <h3 className="font-serif text-2xl font-semibold text-hd-secondary mb-3">Par WhatsApp</h3>
               <p className="mb-6 text-hd-text">Réponse rapide en quelques minutes</p>
-              <a href="https://wa.me/50939134651" className="inline-block bg-[#25D366] text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-[#128C7E] transition">
+              <a href="https://wa.me/50939134651" className="inline-block bg-[#25D366] text-white px-8 py-3 rounded-full font-semibold shadow-md hover:bg-[#128C7E] transition-all hover:scale-105">
                 Démarrer chat
               </a>
             </div>
             
-            <div className="bg-hd-light rounded-2xl p-8 shadow-sm border border-hd-border hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm text-hd-primary">
-                <i className="far fa-envelope text-3xl"></i>
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-hd-border/50">
+              <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-6 text-white shadow-md group-hover:scale-110 transition-transform">
+                <i className="far fa-envelope text-2xl"></i>
               </div>
               <h3 className="font-serif text-2xl font-semibold text-hd-secondary mb-3">Par email</h3>
               <p className="mb-6 text-hd-text">Pour les demandes détaillées</p>
-              <a href="mailto:contact@hdaily.ht" className="inline-block bg-white border-2 border-hd-primary text-hd-primary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition">
+              <a href="mailto:contact@hdaily.ht" className="inline-block bg-white border-2 border-hd-primary text-hd-primary px-8 py-3 rounded-full font-semibold hover:bg-hd-primary hover:text-white transition-all">
                 Nous écrire
               </a>
             </div>

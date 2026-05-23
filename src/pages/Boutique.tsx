@@ -64,7 +64,7 @@ const Boutique: React.FC = () => {
     <div className="min-h-screen bg-hd-cream">
       {/* Hero Section */}
       <section className="pt-16 pb-20 md:pt-24 md:pb-32 bg-gradient-to-br from-hd-cream to-hd-light">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16 text-center">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
           <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
             <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
             <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Boutique</span>
@@ -93,7 +93,7 @@ const Boutique: React.FC = () => {
       </section>
 
       {/* Category Filters */}
-      <section className="pb-12 xl:pb-20 px-6 max-w-[1600px] mx-auto mt-12 xl:mt-16">
+      <section className="pb-12 xl:pb-20 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mt-12 xl:mt-16">
         <div className="text-center mb-10">
           <h2 className="text-3xl xl:text-4xl font-serif text-hd-secondary mb-4">Catégories</h2>
           <p className="text-hd-text text-lg">Parcourez nos produits par catégorie</p>
@@ -116,7 +116,7 @@ const Boutique: React.FC = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="pb-24 px-6 max-w-[1600px] mx-auto">
+      <section className="pb-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         {filteredProducts.length === 0 ? (
           <div className="text-center py-16 xl:py-24 bg-white rounded-3xl shadow-sm border border-hd-border max-w-4xl mx-auto">
             <i className="fas fa-search text-5xl text-gray-300 mb-6"></i>
@@ -190,7 +190,7 @@ const Boutique: React.FC = () => {
 
       {/* Pagination */}
       {filteredProducts.length > 0 && (
-        <section className="pb-20 px-6 max-w-7xl mx-auto">
+        <section className="pb-20 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="flex justify-center gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}

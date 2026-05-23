@@ -102,7 +102,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-bg-pattern pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 xl:px-16">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 xl:gap-24">
             <div className="text-center lg:text-left w-full lg:w-[45%] z-10">
               <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 lg:mb-8 shadow-sm">
@@ -118,10 +118,10 @@ const Home: React.FC = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full mt-10 xl:mt-12">
-                <Link to="/boutique" className="text-center bg-hd-primary text-white px-8 py-4 xl:px-10 xl:py-5 rounded-full font-semibold text-lg xl:text-xl shadow-[0_10px_40px_-10px_rgba(16,185,129,0.5)] transition-all hover:bg-hd-primary-dark hover:-translate-y-1">
+                <Link to="/boutique" className="btn-primary flex justify-center items-center px-8 py-4 xl:px-10 xl:py-5 text-lg xl:text-xl">
                   Explorer le menu <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </Link>
-                <a href="#paniers" className="text-center bg-white border-2 border-hd-primary text-hd-primary px-8 py-4 xl:px-10 xl:py-5 rounded-full font-semibold text-lg xl:text-xl transition-all hover:bg-hd-primary hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                <a href="#paniers" className="btn-secondary flex justify-center items-center px-8 py-4 xl:px-10 xl:py-5 text-lg xl:text-xl">
                   Voir nos coffrets
                 </a>
               </div>
@@ -152,7 +152,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Product Categories */}
-      <section className="py-24 px-6 max-w-[1600px] mx-auto">
+      <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="text-center mb-16">
           <span className="text-sm md:text-base uppercase tracking-[0.3em] text-hd-primary font-bold">Notre sélection</span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary mt-3">Produits d'excellence</h2>
@@ -201,7 +201,7 @@ const Home: React.FC = () => {
 
       {/* Paniers Pré-faits */}
       <section id="paniers" className="bg-gradient-to-b from-hd-light to-hd-cream py-24">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
           <div className="text-center mb-16">
             <span className="text-sm md:text-base uppercase tracking-[0.3em] text-hd-primary font-bold">
               <i className="fas fa-gift mr-2"></i> Idéal pour toutes les occasions
@@ -266,7 +266,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Services */}
-      <section className="py-24 max-w-[1600px] mx-auto px-6 lg:px-12">
+      <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center w-full">
           {services.map((service, index) => (
             <div key={index} className="p-5">
@@ -281,21 +281,20 @@ const Home: React.FC = () => {
       </section>
 
       {/* Subscription CTA */}
-      <section className="py-24 px-6 bg-gradient-to-r from-hd-secondary to-gray-900 relative overflow-hidden text-white">
-        <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2310b981\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-        <div className="max-w-[1200px] mx-auto text-center relative z-10">
-          <div className="w-20 h-20 bg-hd-primary/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border border-hd-primary/50 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
-            <i className="fas fa-crown text-4xl text-hd-primary"></i>
+      <section className="py-24 px-6 bg-hd-light border-t border-hd-border">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
+          <div className="w-20 h-20 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <i className="fas fa-crown text-4xl text-white"></i>
           </div>
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-white mb-6">L'Abonnement Premium</h2>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-hd-secondary mb-6">L'Abonnement Premium</h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-hd-text max-w-3xl mx-auto font-light leading-relaxed">
             Recevez chaque semaine votre sélection personnalisée et bénéficiez de -20% sur tous vos achats. L'excellence livrée à votre porte.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-            <Link to="/abonnement" className="bg-hd-primary text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-hd-primary-dark transition-all hover:scale-105 shadow-[0_10px_40px_-10px_rgba(16,185,129,0.5)]">
+            <Link to="/abonnement" className="btn-primary flex justify-center items-center px-10 py-5 text-lg font-bold">
               S'abonner dès maintenant
             </Link>
-            <a href="#contact" className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white hover:text-hd-secondary transition-all">
+            <a href="#contact" className="btn-secondary flex justify-center items-center px-10 py-5 text-lg font-bold">
               En savoir plus
             </a>
           </div>
@@ -304,7 +303,7 @@ const Home: React.FC = () => {
 
       {/* Contact Section */}
       <section id="contact" className="bg-gradient-to-b from-hd-cream to-white py-24 px-6 border-t border-hd-border">
-        <div className="max-w-[1400px] mx-auto flex flex-col lg:flex-row gap-16 xl:gap-24 items-center">
+        <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 flex flex-col lg:flex-row gap-16 xl:gap-24 items-center">
           <div className="flex-1 text-center lg:text-left">
             <span className="inline-flex items-center gap-2 text-hd-primary font-bold tracking-[0.2em] uppercase text-sm mb-4">
               <i className="far fa-comment-dots text-xl"></i> Besoin d'aide ?
