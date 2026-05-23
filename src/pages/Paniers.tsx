@@ -115,16 +115,14 @@ const Paniers: React.FC = () => {
                 <div className="space-y-3">
                   <button
                     onClick={() => handlePanierOrder(panier.name, panier.price)}
-                    className={`w-full py-3 rounded-full font-semibold shadow-md transition ${
-                      panier.popular ? 'btn-primary' : 'bg-hd-secondary text-white hover:bg-hd-primary'
-                    }`}
+                    className="btn-primary w-full flex justify-center items-center py-3"
                   >
                     <i className="fas fa-shopping-cart mr-2"></i>
                     Commander ce panier
                   </button>
                   <Link
                     to="/contact"
-                    className="block w-full py-3 border border-hd-border rounded-full text-center text-sm font-medium text-hd-secondary hover:border-hd-primary hover:text-hd-primary transition"
+                    className="btn-secondary w-full flex justify-center items-center py-3"
                   >
                     <i className="fas fa-phone mr-2"></i>
                     Contacter pour personnaliser
