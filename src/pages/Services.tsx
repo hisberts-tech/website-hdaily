@@ -185,7 +185,7 @@ const Services: React.FC = () => {
             </button>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow border-2 border-hd-primary">
+          <div className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow">
             <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-credit-card text-white text-2xl"></i>
             </div>
@@ -343,7 +343,7 @@ const Services: React.FC = () => {
 
         {/* Credit service Details */}
         {expandedService === 'credit' && (
-          <article id="credit-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12 border-2 border-hd-primary">
+          <article id="credit-details" className="bg-white rounded-2xl shadow-lg p-8 mb-12">
           <div className="flex items-center mb-6">
             <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center mr-4">
               <i className="fas fa-credit-card text-white text-xl"></i>
