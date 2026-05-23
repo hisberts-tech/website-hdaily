@@ -211,18 +211,18 @@ const Contact: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-hd-secondary to-gray-800 text-white">
+      <section className="py-24 px-6 bg-gradient-to-b from-hd-cream to-white border-t border-hd-border">
         <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif mb-4">Prêt à commander?</h2>
-          <p className="text-lg opacity-90 mb-8">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary mb-6">Prêt à commander?</h2>
+          <p className="text-lg xl:text-xl text-hd-text mb-16 max-w-3xl mx-auto leading-relaxed">
             Contactez-nous dès maintenant pour passer votre commande ou obtenir plus d'informations.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://wa.me/50939134651" className="btn-primary bg-white text-hd-secondary hover:bg-hd-primary hover:text-white">
-              <i className="fab fa-whatsapp mr-2"></i> Commander via WhatsApp
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="https://wa.me/50939134651" className="btn-primary flex justify-center items-center px-10 py-5 text-lg font-bold">
+              <i className="fab fa-whatsapp mr-3"></i> Commander via WhatsApp
             </a>
-            <a href="tel:+50939134651" className="btn-outline border-white text-white hover:bg-white hover:text-hd-secondary">
-              <i className="fas fa-phone mr-2"></i> Appeler maintenant
+            <a href="tel:+50939134651" className="btn-secondary flex justify-center items-center px-10 py-5 text-lg font-bold">
+              <i className="fas fa-phone mr-3"></i> Appeler maintenant
             </a>
           </div>
         </div>
