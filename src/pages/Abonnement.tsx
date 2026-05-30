@@ -5,7 +5,6 @@ import { useNotifications } from '../context/NotificationContext';
 const Abonnement: React.FC = () => {
   const { addNotification } = useNotifications();
   const [selectedPlan, setSelectedPlan] = useState<string>('');
-  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,17 +16,6 @@ const Abonnement: React.FC = () => {
     paymentMethod: '',
     creditRequest: false
   });
-
-  const availableProducts = [
-    { id: 'rice', name: 'Riz premium', price: 500, unit: 'kg' },
-    { id: 'pasta', name: 'Pâtes', price: 300, unit: 'paquet' },
-    { id: 'oil', name: 'Huile végétale', price: 450, unit: 'bouteille' },
-    { id: 'tomatoes', name: 'Tomates fraîches', price: 200, unit: 'kg' },
-    { id: 'vegetables', name: 'Légumes mixtes', price: 350, unit: 'panier' },
-    { id: 'fruits', name: 'Fruits tropicaux', price: 400, unit: 'panier' },
-    { id: 'milk', name: 'Lait', price: 150, unit: 'litre' },
-    { id: 'eggs', name: 'Œufs', price: 250, unit: 'douzaine' },
-  ];
 
   const subscriptionPlans = [
     {
@@ -94,14 +82,6 @@ const Abonnement: React.FC = () => {
     setSelectedPlan(planId);
   };
 
-  const handleProductToggle = (productId: string) => {
-    setSelectedProducts(prev => 
-      prev.includes(productId) 
-        ? prev.filter(id => id !== productId)
-        : [...prev, productId]
-    );
-  };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
     setFormData(prev => ({
@@ -122,7 +102,6 @@ const Abonnement: React.FC = () => {
     
     // Reset form
     setSelectedPlan('');
-    setSelectedProducts([]);
     setFormData({
       name: '',
       email: '',
