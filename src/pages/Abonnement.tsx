@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useNotifications } from '../context/NotificationContext';
 
 const Abonnement: React.FC = () => {
@@ -240,11 +241,11 @@ const Abonnement: React.FC = () => {
                   <button
                     className={`w-full py-3 rounded-full font-semibold shadow-md transition ${
                       selectedPlan === plan.id
-                        ? 'bg-hd-primary text-white'
-                        : 'bg-hd-secondary text-white hover:bg-hd-primary'
+                        ? 'bg-green-600 text-white ring-2 ring-green-400'
+                        : 'bg-green-600 text-white hover:bg-green-500'
                     }`}
                   >
-                    {selectedPlan === plan.id ? 'Sélectionné' : 'Choisir ce plan'}
+                    {selectedPlan === plan.id ? 'Sélectionné ✓' : 'Choisir ce plan'}
                   </button>
                 </div>
               </div>
@@ -309,32 +310,27 @@ const Abonnement: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">Choisissez vos produits</h2>
           <div className="section-divider"></div>
           <p className="text-hd-text max-w-2xl mx-auto mt-4">
-            Sélectionnez les produits que vous souhaitez recevoir régulièrement
+            Explorez notre boutique pour découvrir tous nos produits frais et choisir ceux que vous souhaitez recevoir régulièrement.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {availableProducts.map((product) => (
-            <div
-              key={product.id}
-              onClick={() => handleProductToggle(product.id)}
-              className={`cursor-pointer rounded-xl border-2 p-4 transition-all ${
-                selectedProducts.includes(product.id)
-                  ? 'border-hd-primary bg-hd-primary/10'
-                  : 'border-hd-border hover:border-hd-primary'
-              }`}
-            >
-              <div className="flex items-start justify-between mb-2">
-                <h4 className="font-semibold text-hd-secondary">{product.name}</h4>
-                {selectedProducts.includes(product.id) && (
-                  <i className="fas fa-check-circle text-hd-primary"></i>
-                )}
-              </div>
-              <p className="text-sm text-hd-text">
-                {product.price} HTG / {product.unit}
-              </p>
-            </div>
-          ))}
+        <div className="flex flex-col items-center justify-center bg-gradient-to-br from-hd-light to-white rounded-2xl border border-hd-border/60 shadow-sm p-10 text-center gap-6">
+          <div className="w-20 h-20 bg-hd-primary/10 rounded-full flex items-center justify-center">
+            <i className="fas fa-store text-hd-primary text-3xl"></i>
+          </div>
+          <div>
+            <h3 className="text-2xl font-serif font-semibold text-hd-secondary mb-2">Visitez notre boutique</h3>
+            <p className="text-hd-text max-w-md mx-auto">
+              Parcourez notre sélection complète de produits frais, épicerie et plus encore. Ajoutez vos favoris au panier et combinez votre abonnement.
+            </p>
+          </div>
+          <Link
+            to="/boutique"
+            className="inline-flex items-center gap-3 bg-hd-primary text-white px-8 py-4 rounded-full font-semibold text-lg shadow-md hover:bg-hd-primary/90 transition-all hover:scale-105"
+          >
+            <i className="fas fa-shopping-basket"></i>
+            Voir tous les produits
+          </Link>
         </div>
       </section>
 
