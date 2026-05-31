@@ -4,7 +4,6 @@ import Footer from './Footer';
 import Cart from './Cart';
 import Notifications from './Notifications';
 import SubscriptionModal from './SubscriptionModal';
-import CreditModal from './CreditModal';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,7 +11,6 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isSubscriptionModalOpen, setIsSubscriptionModalOpen] = useState(false);
-  const [isCreditModalOpen, setIsCreditModalOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
@@ -25,7 +23,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen flex flex-col">
       <Header 
         onSubscriptionClick={() => setIsSubscriptionModalOpen(true)}
-        onCreditClick={() => setIsCreditModalOpen(true)}
         onCartClick={() => setIsCartOpen(true)}
       />
       <main className="flex-1">
@@ -37,10 +34,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <SubscriptionModal 
         isOpen={isSubscriptionModalOpen} 
         onClose={() => setIsSubscriptionModalOpen(false)} 
-      />
-      <CreditModal 
-        isOpen={isCreditModalOpen} 
-        onClose={() => setIsCreditModalOpen(false)} 
       />
     </div>
   );

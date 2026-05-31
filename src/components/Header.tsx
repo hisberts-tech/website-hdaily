@@ -5,11 +5,10 @@ import logo from '../assets/images/ChatGPT_Image_7_mars_2026__10_43_31-removebg-
 
 interface HeaderProps {
   onSubscriptionClick: () => void;
-  onCreditClick: () => void;
   onCartClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onCartClick }) => {
+const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCartClick }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { getTotalItems } = useCart();
   const location = useLocation();
@@ -33,10 +32,6 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
 
   const handleSubscriptionClick = () => {
     onSubscriptionClick();
-  };
-
-  const handleCreditClick = () => {
-    onCreditClick();
   };
 
   const isActive = (href: string) => {
@@ -85,12 +80,12 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
               )}
             </button>
             
-            <button
-              onClick={handleCreditClick}
+            <Link
+              to="/credit"
               className="hidden md:flex items-center gap-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-200 transition"
             >
               <i className="fas fa-credit-card"></i> Crédit
-            </button>
+            </Link>
             
             <button
               onClick={handleSubscriptionClick}
@@ -154,13 +149,14 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCreditClick, onC
               ))}
               
               <div className="pt-3 border-t border-hd-border space-y-2">
-                <button
-                  onClick={handleCreditClick}
+                <Link
+                  to="/credit"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium bg-blue-100 text-blue-600 hover:bg-blue-200 transition"
                 >
                   <i className="fas fa-credit-card w-4"></i>
                   Crédit
-                </button>
+                </Link>
                 
                 <button
                   onClick={handleSubscriptionClick}
