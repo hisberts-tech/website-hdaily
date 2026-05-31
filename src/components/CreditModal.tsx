@@ -34,23 +34,17 @@ const CreditModal: React.FC<CreditModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="space-y-4 mb-6">
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
-            <h4 className="font-semibold text-amber-900 mb-3">Conditions de crédit</h4>
-            <ul className="text-sm text-amber-800 space-y-2 text-left">
-              <li>• Avoir complété au moins 3 commandes payées et validées avec H-Daily</li>
-              <li>• Être un client enregistré</li>
-              <li>• Fournir un numéro de téléphone valide, nom et prénom</li>
-              <li>• Fournir un NIF ou CIN (carte d'identité)</li>
-              <li>• Limite de crédit : 3 000 à 7 500 HTG</li>
-              <li>• Délai de remboursement : 1 semaine ou 1 mois</li>
-              <li>• Pour un délai d'un mois : majoration de 10% de la dette</li>
-              <li>• Fournir une adresse complète et vérifiable</li>
-              <li>• N'avoir aucune dette en cours ou en retard</li>
-              <li>• Respecter les délais pour maintenir l'accès au crédit</li>
-              <li>• L'accès au crédit peut être suspendu en cas de retard de paiement</li>
-              <li>• H-Daily se réserve le droit de réduire ou retirer la limite de crédit si les conditions ne sont pas respectées</li>
-              <li>• Toutes les informations fournies doivent être exactes et vérifiables</li>
-            </ul>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <h4 className="font-semibold text-hd-secondary mb-2">Crédit Express</h4>
+            <p className="text-sm text-hd-text">Jusqu'à 5,000 HTG</p>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <h4 className="font-semibold text-hd-secondary mb-2">Crédit Standard</h4>
+            <p className="text-sm text-hd-text">Jusqu'à 15,000 HTG</p>
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <h4 className="font-semibold text-hd-secondary mb-2">Crédit Premium</h4>
+            <p className="text-sm text-hd-text">Jusqu'à 30,000 HTG</p>
           </div>
         </div>
 
