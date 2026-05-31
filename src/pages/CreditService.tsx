@@ -33,18 +33,45 @@ const CreditService: React.FC = () => {
             <h3 className="text-2xl font-serif text-hd-secondary mb-4">Crédit Express</h3>
             <p className="text-4xl font-bold text-hd-primary mb-2">5 000 <span className="text-xl text-gray-500">HTG</span></p>
             <p className="text-hd-text mt-4">Idéal pour les petits achats et dépannages rapides du quotidien.</p>
+            <div className="mt-4 inline-block bg-blue-50 text-blue-700 text-xs px-3 py-1 rounded-full font-medium border border-blue-100">Niveau initial</div>
           </div>
           <div className="bg-white rounded-2xl shadow-xl p-8 text-center border-t-4 border-hd-primary transform md:-translate-y-4 relative">
             <span className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-hd-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Populaire</span>
             <h3 className="text-2xl font-serif text-hd-secondary mb-4">Crédit Standard</h3>
             <p className="text-4xl font-bold text-hd-primary mb-2">15 000 <span className="text-xl text-gray-500">HTG</span></p>
             <p className="text-hd-text mt-4">La solution parfaite pour vos courses hebdomadaires régulières.</p>
+            <div className="mt-4 inline-block bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-medium border border-amber-100"><i className="fas fa-lock text-[10px] mr-1.5"></i>Débloqué après 3 achats Express</div>
           </div>
           <div className="bg-white rounded-2xl shadow-md p-8 text-center border-t-4 border-amber-500">
             <h3 className="text-2xl font-serif text-hd-secondary mb-4">Crédit Premium</h3>
             <p className="text-4xl font-bold text-hd-primary mb-2">30 000 <span className="text-xl text-gray-500">HTG</span></p>
             <p className="text-hd-text mt-4">Pour les familles nombreuses et les clients très fidèles.</p>
+            <div className="mt-4 inline-block bg-amber-50 text-amber-700 text-xs px-3 py-1 rounded-full font-medium border border-amber-100"><i className="fas fa-lock text-[10px] mr-1.5"></i>Débloqué après 3 achats Standard</div>
           </div>
+        </div>
+
+        {/* Progression Rules */}
+        <div className="mt-16 bg-hd-primary/5 rounded-2xl p-8 border border-hd-primary/20 max-w-4xl mx-auto shadow-sm">
+          <h3 className="text-xl font-serif text-hd-secondary mb-4 flex items-center justify-center gap-3">
+            <i className="fas fa-chart-line text-hd-primary"></i> Évolution de votre niveau de crédit
+          </h3>
+          <p className="text-hd-text text-center mb-6 max-w-2xl mx-auto">
+            L'accès aux niveaux supérieurs (Standard et Premium) est soumis à un historique irréprochable. Pour passer au niveau supérieur, vous devez :
+          </p>
+          <ul className="space-y-4 max-w-xl mx-auto bg-white p-6 rounded-xl border border-hd-primary/10">
+            <li className="flex gap-3 items-start">
+              <i className="fas fa-check-circle text-hd-primary mt-1"></i>
+              <span className="text-sm text-hd-secondary">Compléter au moins <strong>3 achats</strong> à votre niveau de crédit actuel.</span>
+            </li>
+            <li className="flex gap-3 items-start">
+              <i className="fas fa-check-circle text-hd-primary mt-1"></i>
+              <span className="text-sm text-hd-secondary"><strong>Rembourser toutes vos dettes à temps</strong>, sans aucun retard.</span>
+            </li>
+            <li className="flex gap-3 items-start">
+              <i className="fas fa-check-circle text-hd-primary mt-1"></i>
+              <span className="text-sm text-hd-secondary">Respecter l'ensemble des conditions générales du service de crédit.</span>
+            </li>
+          </ul>
         </div>
       </section>
 
