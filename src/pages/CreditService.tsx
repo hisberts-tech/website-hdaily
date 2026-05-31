@@ -131,7 +131,6 @@ const CreditService: React.FC = () => {
               <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Fournir un numéro de téléphone valide</li>
               <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Fournir nom et prénom</li>
               <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Fournir un NIF ou CIN (carte d'identité)</li>
-              <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Limite de crédit entre 3 000 et 7 500 HTG</li>
               <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Choisir un délai de remboursement (1 semaine ou 1 mois)</li>
               <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Pour un terme d'un mois, la dette augmente de 10%</li>
               <li className="flex gap-2"><i className="fas fa-circle text-[8px] mt-1.5"></i> Fournir une adresse complète et vérifiable</li>
@@ -195,11 +194,10 @@ const CreditService: React.FC = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Montant demandé (HTG) *</label>
                   <select required className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-hd-primary outline-none transition-all bg-white">
-                    <option value="">Sélectionnez le montant</option>
-                    <option value="3000">3 000 HTG</option>
-                    <option value="4500">4 500 HTG</option>
-                    <option value="6000">6 000 HTG</option>
-                    <option value="7500">7 500 HTG</option>
+                    <option value="">Sélectionnez le niveau souhaité</option>
+                    <option value="express">Crédit Express (Jusqu'à 5 000 HTG)</option>
+                    <option value="standard">Crédit Standard (Jusqu'à 15 000 HTG)</option>
+                    <option value="premium">Crédit Premium (Jusqu'à 30 000 HTG)</option>
                   </select>
                 </div>
                 <div>
