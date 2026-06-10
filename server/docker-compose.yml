@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: hdaily-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: hdaily
+      POSTGRES_PASSWORD: hdaily
+      POSTGRES_DB: hdaily
+    ports:
+      - "5432:5432"
+    volumes:
+      - hdaily_pgdata:/var/lib/postgresql/data
+
+volumes:
+  hdaily_pgdata:

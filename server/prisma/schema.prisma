@@ -1,0 +1,234 @@
+// H-Daily database schema
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ----- Enums -----
+
+enum Category {
+  frais
+  alimentaires
+  quotidiens
+}
+
+enum OrderStatus {
+  pending
+  confirmed
+  preparing
+  delivered
+  cancelled
+}
+
+enum SubscriptionStatus {
+  pending
+  active
+  paused
+  cancelled
+}
+
+enum CreditLevel {
+  express // up to 5 000 HTG
+  standard // up to 15 000 HTG
+  premium // up to 30 000 HTG
+}
+
+enum CreditTerm {
+  one_week // no extra fee
+  one_month // +10% on the debt
+}
+
+enum CreditStatus {
+  pending
+  approved
+  rejected
+  suspended
+}
+
+enum CreditTxType {
+  purchase
+  payment
+}
+
+enum PaymentMethod {
+  moncash
+  natcash
+  cash
+  card
+}
+
+enum PaymentStatus {
+  pending_verification
+  verified
+  rejected
+}
+
+enum Role {
+  customer
+  admin
+}
+
+// ----- Models -----
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  phone     String?
+  fullName  String
+  password  String // bcrypt hash
+  role      Role     @default(customer)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  orders        Order[]
+  subscriptions Subscription[]
+  creditAccount CreditAccount?
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    Category
+  price       Int // HTG (no decimals)
+  unit        String
+  image       String
+  description String
+  stock       Int      @default(0)
+  badge       String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems OrderItem[]
+}
+
+model Order {
+  id            String      @id @default(uuid())
+  userId        String?
+  user          User?       @relation(fields: [userId], references: [id])
+  customerName  String
+  phone         String
+  address       String
+  paymentMethod String // moncash | natcash | cash | card
+  status        OrderStatus @default(pending)
+  total         Int // HTG
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+  name      String // snapshot at purchase time
+  price     Int // snapshot at purchase time (HTG)
+  quantity  Int
+}
+
+model SubscriptionPlan {
+  id            String   @id // basic | family | premium
+  name          String
+  price         Int // HTG
+  originalPrice Int?
+  frequency     String // e.g. "par semaine"
+  description   String
+  features      String[]
+  popular       Boolean  @default(false)
+
+  subscriptions Subscription[]
+}
+
+model Subscription {
+  id            String             @id @default(uuid())
+  planId        String
+  plan          SubscriptionPlan   @relation(fields: [planId], references: [id])
+  userId        String?
+  user          User?              @relation(fields: [userId], references: [id])
+  fullName      String
+  email         String
+  phone         String
+  address       String
+  frequency     String // weekly | monthly
+  deliveryDay   String
+  deliveryTime  String
+  paymentMethod String
+  creditRequest Boolean            @default(false)
+  status        SubscriptionStatus @default(pending)
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  payment Payment?
+}
+
+// Manual MonCash (and other offline) payments — recorded then verified by hand.
+model Payment {
+  id             String        @id @default(uuid())
+  subscriptionId String?       @unique
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  method         PaymentMethod @default(moncash)
+  amount         Int // HTG
+  senderPhone    String // the MonCash number the customer paid from
+  transactionRef String // MonCash transaction ID entered by the customer
+  status         PaymentStatus @default(pending_verification)
+  verifiedAt     DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+}
+
+model CreditApplication {
+  id        String       @id @default(uuid())
+  firstName String
+  lastName  String
+  phone     String
+  nif       String // NIF or CIN
+  address   String
+  level     CreditLevel
+  term      CreditTerm
+  status    CreditStatus @default(pending)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model CreditAccount {
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  user        User        @relation(fields: [userId], references: [id])
+  level       CreditLevel @default(express)
+  creditLimit Int // HTG
+  usedCredit  Int         @default(0)
+  approvedAt  DateTime    @default(now())
+
+  transactions CreditTransaction[]
+}
+
+model CreditTransaction {
+  id          String        @id @default(uuid())
+  accountId   String
+  account     CreditAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  type        CreditTxType
+  amount      Int // HTG
+  totalAmount Int // amount incl. interest for purchases (HTG)
+  dueDate     DateTime?
+  createdAt   DateTime      @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String
+  phone     String
+  subject   String
+  message   String
+  handled   Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

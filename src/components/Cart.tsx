@@ -1,6 +1,8 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { useNotifications } from '../context/NotificationContext';
+import { useLoyalty, pointsForPurchase } from '../context/LoyaltyContext';
+import { useLanguage } from '../context/LanguageContext';
 
 interface CartProps {
   isOpen: boolean;
@@ -10,6 +12,8 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const { items, getTotalPrice, updateQuantity, removeFromCart } = useCart();
   const { addNotification } = useNotifications();
+  const { awardPurchase } = useLoyalty();
+  const { t } = useLanguage();
 
   const handleCheckout = () => {
     if (items.length === 0) {
@@ -19,6 +23,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
     let message = "Bonjour! Je souhaite commander les produits suivants:\n\n";
     let total = 0;
+    const totalItems = items.reduce((s, i) => s + i.quantity, 0);
 
     items.forEach((item, index) => {
       const itemTotal = item.price * item.quantity;
@@ -30,8 +35,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
     const whatsappUrl = `https://wa.me/50939134651?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-    
-    addNotification('Commande envoyée via WhatsApp!', 'success');
+
+    const earned = awardPurchase(total, totalItems);
+    addNotification(`Commande envoyée via WhatsApp ! +${earned} points de fidélité gagnés 🎉`, 'success');
     onClose();
   };
 
@@ -70,11 +76,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       {/* Cart Modal */}
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 animate-fade-in">
-          <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl animate-slide-up">
+          <div className="absolute right-0 top-0 h-full w-full sm:max-w-sm md:max-w-md bg-white shadow-xl animate-slide-up">
             <div className="flex flex-col h-full">
               {/* Cart Header */}
-              <div className="flex items-center justify-between p-4 border-b">
-                <h3 className="text-lg font-semibold text-hd-secondary">Mon Panier</h3>
+              <div className="flex items-center justify-between p-4 border-b border-hd-border">
+                <h3 className="text-lg font-semibold text-hd-secondary">{t('cart.title')}</h3>
                 <button
                   onClick={onClose}
                   className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -88,12 +94,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                 {items.length === 0 ? (
                   <div className="text-center py-8">
                     <i className="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
-                    <p className="text-gray-500 mb-4">Votre panier est vide</p>
+                    <p className="text-hd-muted mb-4">{t('cart.empty')}</p>
                     <button
                       onClick={onClose}
                       className="text-hd-primary hover:text-hd-primary-dark transition-colors"
                     >
-                      Continuer mes achats
+                      {t('cart.continueShopping')}
                     </button>
                   </div>
                 ) : (
@@ -147,22 +153,27 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
               {/* Cart Footer */}
               {items.length > 0 && (
                 <div className="border-t p-4">
-                  <div className="flex justify-between mb-4">
-                    <span className="font-semibold text-hd-secondary">Total:</span>
+                  <div className="flex justify-between mb-2">
+                    <span className="font-semibold text-hd-secondary">{t('cart.total')}</span>
                     <span className="text-xl font-bold text-hd-primary">{totalPrice} HTG</span>
                   </div>
+                  {/* Points preview */}
+                  <div className="flex items-center gap-2 bg-hd-primary/5 rounded-lg px-3 py-2 mb-4">
+                    <i className="fas fa-star text-hd-primary text-xs"></i>
+                    <span className="text-xs text-hd-secondary">
+                      {t('cart.pointsPreview')}{' '}
+                      <strong className="text-hd-primary">
+                        +{pointsForPurchase(totalPrice)} pts
+                      </strong>{' '}
+                      {t('cart.pointsLabel')}
+                    </span>
+                  </div>
                   <div className="space-y-2">
-                    <button
-                      onClick={handleCheckout}
-                      className="w-full btn-primary"
-                    >
-                      Commander via WhatsApp
+                    <button onClick={handleCheckout} className="w-full btn-primary">
+                      {t('cart.orderWhatsapp')}
                     </button>
-                    <button
-                      onClick={onClose}
-                      className="w-full btn-outline"
-                    >
-                      Continuer mes achats
+                    <button onClick={onClose} className="w-full btn-outline">
+                      {t('cart.continueShopping')}
                     </button>
                   </div>
                 </div>

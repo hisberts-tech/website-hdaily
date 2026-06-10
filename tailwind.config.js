@@ -4,17 +4,21 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        'hd-primary': '#10b981',
-        'hd-primary-dark': '#059669',
-        'hd-secondary': '#1F2A2E',
-        'hd-cream': '#FDF9F2',
-        'hd-light': '#F5F0E8',
-        'hd-border': '#E8DFD3',
-        'hd-text': '#4F5A5E',
-        'hd-muted': '#6E7A7A',
+        // All hd-* colors reference CSS variables so they flip with [data-theme="dark"]
+        'hd-primary':      'rgb(var(--c-primary)     / <alpha-value>)',
+        'hd-primary-dark': 'rgb(var(--c-primary-dark)/ <alpha-value>)',
+        'hd-secondary':    'rgb(var(--c-secondary)   / <alpha-value>)',
+        'hd-cream':        'rgb(var(--c-cream)        / <alpha-value>)',
+        'hd-light':        'rgb(var(--c-light)        / <alpha-value>)',
+        'hd-border':       'rgb(var(--c-border)       / <alpha-value>)',
+        'hd-text':         'rgb(var(--c-text)         / <alpha-value>)',
+        'hd-muted':        'rgb(var(--c-muted)        / <alpha-value>)',
+        'hd-surface':      'rgb(var(--c-surface)      / <alpha-value>)',
+        'hd-surface2':     'rgb(var(--c-surface2)     / <alpha-value>)',
       },
       fontFamily: {
         'serif': ['Cormorant Garamond', 'serif'],

@@ -1,11 +1,14 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Product, CategoryFilter } from '../types';
+import { api } from '../lib/api';
 
 interface ProductContextType {
   products: Product[];
   filteredProducts: Product[];
   selectedCategory: CategoryFilter;
   searchQuery: string;
+  loading: boolean;
+  error: string | null;
   setSelectedCategory: (category: CategoryFilter) => void;
   setSearchQuery: (query: string) => void;
   getProductById: (id: number) => Product | undefined;
@@ -150,9 +153,32 @@ const initialProducts: Product[] = [
 ];
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [products] = useState<Product[]>(initialProducts);
+  const [products, setProducts] = useState<Product[]>(initialProducts);
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Load products from the API. Falls back to the bundled list on failure so the
+  // catalogue still renders if the backend is unavailable.
+  useEffect(() => {
+    let cancelled = false;
+    api
+      .listProducts()
+      .then((data) => {
+        if (!cancelled && data.length > 0) setProducts(data);
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message ?? 'Failed to load products');
+        console.error('Failed to load products from API, using bundled list:', err);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const filteredProducts = products.filter(product => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
@@ -175,6 +201,8 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     filteredProducts,
     selectedCategory,
     searchQuery,
+    loading,
+    error,
     setSelectedCategory,
     setSearchQuery,
     getProductById,

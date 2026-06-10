@@ -2,10 +2,55 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* ============================================================
+   CSS DESIGN TOKENS — Light theme (default)
+   All hd-* Tailwind colors read from these variables so the
+   entire palette flips when [data-theme="dark"] is set on <html>.
+   Values are raw RGB channels (no #) so Tailwind opacity works.
+   ============================================================ */
+:root {
+  /* Brand green */
+  --c-primary:       16  185 129;   /* #10b981 */
+  --c-primary-dark:   5  150 105;   /* #059669 */
+  /* Foreground / text */
+  --c-secondary:     31   42  46;   /* #1F2A2E — headings */
+  --c-text:          79   90  94;   /* #4F5A5E — body copy */
+  --c-muted:        110  122 122;   /* #6E7A7A */
+  /* Backgrounds */
+  --c-cream:        253  249 242;   /* #FDF9F2 — page bg */
+  --c-light:        245  240 232;   /* #F5F0E8 — section bg */
+  --c-surface:      255  255 255;   /* white — cards / inputs */
+  --c-surface2:     249  246 241;   /* off-white — alt rows */
+  /* Borders */
+  --c-border:       232  223 211;   /* #E8DFD3 */
+
+  /* Shadow opacities keep working because they're plain values */
+  color-scheme: light;
+}
+
+/* ============================================================
+   Dark theme overrides
+   ============================================================ */
+[data-theme="dark"] {
+  --c-primary:       52  211 153;   /* #34d399 — brighter on dark */
+  --c-primary-dark:  16  185 129;   /* #10b981 */
+  --c-secondary:    220  232 238;   /* near-white headings */
+  --c-text:         163  178 184;   /* #A3B2B8 */
+  --c-muted:        110  130 136;   /* #6E8288 */
+  --c-cream:         13   20  24;   /* #0D1418 — dark page bg */
+  --c-light:         20   30  36;   /* #141E24 — dark section bg */
+  --c-surface:       26   38  44;   /* #1A262C — card/input bg */
+  --c-surface2:      32   46  54;   /* slightly lighter */
+  --c-border:        44   62  72;   /* #2C3E48 */
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
 @layer base {
-  * {
-    @apply box-border;
-  }
+  * { @apply box-border; }
 
   html {
     scroll-behavior: smooth;
@@ -15,129 +60,107 @@
   body {
     @apply font-sans bg-hd-cream text-hd-secondary antialiased;
     overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   h1, h2, h3, .serif-heading {
     @apply font-serif font-medium tracking-tight;
   }
 
-  /* Smooth page load */
-  #root {
-    animation: pageLoad 0.4s ease-out;
+  #root { animation: pageLoad 0.4s ease-out; }
+
+  /* ---- Dark mode: white / gray utility overrides ---------- */
+  [data-theme="dark"] .bg-white                         { background-color: rgb(var(--c-surface)) !important; }
+  [data-theme="dark"] .bg-gray-50                       { background-color: rgb(var(--c-cream))   !important; }
+  [data-theme="dark"] .bg-gray-100                      { background-color: rgb(var(--c-light))   !important; }
+  [data-theme="dark"] .bg-gray-200                      { background-color: rgb(var(--c-border))  !important; }
+  [data-theme="dark"] .border-gray-100,
+  [data-theme="dark"] .border-gray-200                  { border-color: rgb(var(--c-border))      !important; }
+  [data-theme="dark"] .divide-gray-50 > * + *           { border-color: rgb(var(--c-border))      !important; }
+  [data-theme="dark"] .text-gray-300,
+  [data-theme="dark"] .text-gray-400,
+  [data-theme="dark"] .text-gray-500,
+  [data-theme="dark"] .text-gray-600                    { color: rgb(var(--c-muted))              !important; }
+  [data-theme="dark"] .text-gray-700,
+  [data-theme="dark"] .text-gray-800,
+  [data-theme="dark"] .text-gray-900                    { color: rgb(var(--c-secondary))          !important; }
+  [data-theme="dark"] .prose                            { color: rgb(var(--c-text)); }
+  [data-theme="dark"] input,
+  [data-theme="dark"] textarea,
+  [data-theme="dark"] select {
+    background-color: rgb(var(--c-surface))  !important;
+    border-color:     rgb(var(--c-border))   !important;
+    color:            rgb(var(--c-secondary)) !important;
   }
+  [data-theme="dark"] input::placeholder,
+  [data-theme="dark"] textarea::placeholder { color: rgb(var(--c-muted)) !important; }
+  [data-theme="dark"] details summary       { color: rgb(var(--c-secondary)); }
 }
 
+/* ============================================================
+   Components
+   ============================================================ */
 @layer components {
   .btn-primary {
-    @apply bg-hd-primary text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-card hover:bg-hd-primary-dark hover:-translate-y-0.5 hover:shadow-card-hover;
+    @apply bg-hd-primary text-white px-6 py-3 rounded-full font-semibold
+           transition-all duration-300 shadow-card
+           hover:bg-hd-primary-dark hover:-translate-y-0.5 hover:shadow-card-hover;
   }
-
   .btn-secondary {
-    @apply border border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold transition-all hover:bg-hd-primary hover:text-white;
+    @apply border border-hd-primary text-hd-primary px-6 py-3 rounded-full font-semibold
+           transition-all hover:bg-hd-primary hover:text-white;
   }
-
   .btn-outline {
-    @apply border border-hd-border bg-white text-hd-secondary px-6 py-3 rounded-full font-medium transition-all hover:border-hd-primary hover:text-hd-primary;
+    @apply border border-hd-border bg-hd-surface text-hd-secondary px-6 py-3 rounded-full
+           font-medium transition-all hover:border-hd-primary hover:text-hd-primary;
   }
 
   .card-premium {
-    @apply bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-premium;
+    @apply bg-hd-surface rounded-2xl overflow-hidden shadow-md
+           transition-all duration-300 hover:-translate-y-1 hover:shadow-premium;
   }
-
-  .subtle-border {
-    @apply border border-hd-primary/15;
-  }
-
-  .section-divider {
-    @apply w-16 h-0.5 bg-hd-primary mx-auto my-4;
-  }
+  .subtle-border  { @apply border border-hd-primary/15; }
+  .section-divider { @apply w-16 h-0.5 bg-hd-primary mx-auto my-4; }
 
   .badge-popular {
-    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark text-white text-xs font-bold px-3 py-1 rounded-full shadow-md;
+    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark text-white
+           text-xs font-bold px-3 py-1 rounded-full shadow-md;
   }
-
   .badge-new {
-    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark text-white text-xs font-bold px-2 py-1 rounded-full shadow-md;
+    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark text-white
+           text-xs font-bold px-2 py-1 rounded-full shadow-md;
   }
 
-  .hero-bg-pattern {
-    @apply bg-gradient-to-br from-hd-cream to-hd-light;
-  }
+  .hero-bg-pattern { @apply bg-gradient-to-br from-hd-cream to-hd-light; }
+  .text-gradient   { @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark bg-clip-text text-transparent; }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-hd-primary to-hd-primary-dark bg-clip-text text-transparent;
-  }
-
-  /* Responsive container helper */
-  .responsive-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
-  /* Responsive section padding */
-  .section-padding {
-    @apply py-12 sm:py-16 md:py-20 lg:py-24;
-  }
+  .responsive-container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .section-padding       { @apply py-12 sm:py-16 md:py-20 lg:py-24; }
 }
 
+/* ============================================================
+   Utilities / Animations
+   ============================================================ */
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
+  .animate-fade-in  { animation: fadeIn  0.5s ease-in-out; }
+  .animate-slide-up { animation: slideUp 0.3s ease-out; }
+  .animate-bounce-in { animation: bounceIn 0.6s ease-out; }
 
-  .animate-slide-up {
-    animation: slideUp 0.3s ease-out;
-  }
-
-  .animate-bounce-in {
-    animation: bounceIn 0.6s ease-out;
-  }
-
-  /* Stagger animation delays for child elements */
-  .stagger-children > *:nth-child(1) { animation-delay: 0s; }
+  .stagger-children > *:nth-child(1) { animation-delay: 0s;   }
   .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
   .stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
   .stagger-children > *:nth-child(4) { animation-delay: 0.3s; }
   .stagger-children > *:nth-child(5) { animation-delay: 0.4s; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { 
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to { 
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
+@keyframes fadeIn   { from { opacity:0 }           to { opacity:1 } }
+@keyframes slideUp  { from { transform:translateY(10px);opacity:0 } to { transform:translateY(0);opacity:1 } }
 @keyframes bounceIn {
-  0% { 
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  50% { 
-    transform: scale(1.05);
-    opacity: 0.8;
-  }
-  100% { 
-    transform: scale(1);
-    opacity: 1;
-  }
+  0%   { transform:scale(0.9); opacity:0   }
+  50%  { transform:scale(1.05);opacity:0.8 }
+  100% { transform:scale(1);   opacity:1   }
 }
-
 @keyframes pageLoad {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity:0; transform:translateY(8px) }
+  to   { opacity:1; transform:translateY(0)   }
 }
