@@ -230,13 +230,15 @@ const Abonnement: React.FC = () => {
                   </div>
 
                   <button
-                    className={`w-full py-3 rounded-full font-semibold shadow-md transition ${
+                    className={`w-full py-3 rounded-full font-semibold shadow-md transition flex items-center justify-center gap-2 ${
                       selectedPlan === plan.id
-                        ? 'bg-green-600 text-white ring-2 ring-green-400'
-                        : 'bg-green-600 text-white hover:bg-green-500'
+                        ? 'bg-hd-primary text-white ring-2 ring-hd-primary/40 shadow-hd-primary/25'
+                        : 'bg-hd-surface border-2 border-hd-primary text-hd-primary hover:bg-hd-primary hover:text-white'
                     }`}
                   >
-                    {selectedPlan === plan.id ? t('abonnement.selectedPlan') : t('abonnement.selectPlan')}
+                    {selectedPlan === plan.id
+                      ? <><i className="fas fa-check-circle"></i> {t('abonnement.selectedPlan')}</>
+                      : t('abonnement.selectPlan')}
                   </button>
 
                   <button
@@ -262,17 +264,20 @@ const Abonnement: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary">{t('abonnement.howTitle')}</h2>
           <div className="section-divider"></div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {[
             { num: '1', title: t('abonnement.step1'),    desc: t('abonnement.step1Desc') },
             { num: '2', title: t('abonnement.step2'),    desc: t('abonnement.step2Desc') },
             { num: '3', title: t('abonnement.step3'),    desc: t('abonnement.step3Desc') },
             { num: '4', title: t('abonnement.step4'),    desc: t('abonnement.step4Desc') },
             { num: '5', title: t('abonnement.step5'),    desc: t('abonnement.step5Desc') },
-          ].map(({ num, title, desc }) => (
-            <div key={num} className="text-center">
-              <div className="w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4">{num}</div>
-              <h3 className="font-semibold text-lg text-hd-secondary mb-2">{title}</h3>
+          ].map(({ num, title, desc }, idx, arr) => (
+            <div key={num} className="relative text-center">
+              {idx < arr.length - 1 && (
+                <div className="hidden lg:block absolute top-6 left-1/2 w-full h-0.5 bg-hd-primary/20 -z-0"></div>
+              )}
+              <div className="relative z-10 w-12 h-12 bg-hd-primary rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-4 shadow-md">{num}</div>
+              <h3 className="font-semibold text-base text-hd-secondary mb-2">{title}</h3>
               <p className="text-hd-text text-sm">{desc}</p>
             </div>
           ))}

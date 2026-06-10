@@ -37,7 +37,7 @@ const Services: React.FC = () => {
       popular: false
     },
     {
-      icon: 'fas fa-credit-card',
+      icon: 'fas fa-wallet',
       title: t('services.svcPayTitle'),
       description: 'Multiple options de paiement sécurisées pour votre confort. Acceptons toutes les méthodes de paiement populaires en Haïti avec transactions cryptées et protégées.',
       features: [
@@ -67,14 +67,14 @@ const Services: React.FC = () => {
       popular: false
     },
     {
-      icon: 'fas fa-credit-card',
+      icon: 'fas fa-hand-holding-usd',
       title: t('services.svcCreditTitle'),
       description: 'Solutions de crédit adaptées à vos besoins avec des conditions transparentes et des taux compétitifs. Achetez maintenant et payez selon votre rythme.',
       features: [
         "Crédit 7 jours avec seulement 10% d'intérêt",
         "Crédit 1 mois avec seulement 10% d'intérêt",
         'Approbation rapide en moins de 2h',
-        'Montants de 1,000 à 50,000 HTG',
+        'Montants de 5,000 à 30,000 HTG',
         'Aucun document complexe requis',
         'Possibilité de renouvellement',
         'Remboursement flexible',
@@ -154,9 +154,7 @@ const Services: React.FC = () => {
       {/* Services Overview */}
       <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-hd-secondary">{t('services.overviewTitle')}</h2>
-          <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
-          <p className="text-hd-text text-lg lg:text-xl max-w-3xl mx-auto mt-4">{t('services.overviewSubtitle')}</p>
+          <p className="text-hd-text text-lg lg:text-xl max-w-3xl mx-auto">{t('services.overviewSubtitle')}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 w-full">

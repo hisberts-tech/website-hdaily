@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useNotifications } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -7,6 +8,19 @@ import heroImage from '../assets/images/pexels-alisa-skripina-2147548092-3556837
 import produitsFraisImage from '../assets/images/pexels-badun-21044412.jpg';
 import alimentairesImage from '../assets/images/pexels-bertellifotografia-30893333.jpg';
 import quotidiensImage from '../assets/images/pexels-david-iloba-28486424-14881644.jpg';
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+const cardIn = {
+  hidden: { opacity: 0, y: 36 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
 
 const Home: React.FC = () => {
   const { addToCart } = useCart();
@@ -102,9 +116,16 @@ const Home: React.FC = () => {
           <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
           <p className="text-hd-text text-lg lg:text-xl max-w-3xl mx-auto mt-4">{t('home.categoriesSubtitle')}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-60px' }}
+        >
           {productCategories.map((category, index) => (
-            <Link key={index} to={category.href} className="block group">
+            <motion.div key={index} variants={cardIn}>
+            <Link to={category.href} className="block group">
               <div className="card-premium subtle-border cursor-pointer">
                 <div className="h-56 relative overflow-hidden">
                   <img src={category.image} alt={category.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -126,8 +147,9 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Paniers Pré-faits */}
@@ -140,9 +162,15 @@ const Home: React.FC = () => {
             <h2 className="text-3xl md:text-5xl font-serif text-hd-secondary mt-3">{t('home.paniersTitle')}</h2>
             <div className="w-24 h-1 bg-hd-primary mx-auto my-6 rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 w-full"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-60px' }}
+          >
             {paniers.map((panier, index) => (
-              <div key={index} className={`bg-hd-surface rounded-2xl shadow-lg card-premium p-6 flex flex-col relative transition-transform ${panier.popular ? 'ring-1 ring-hd-primary/40 lg:transform lg:scale-105 z-10' : ''}`}>
+              <motion.div key={index} variants={cardIn} className={`bg-hd-surface rounded-2xl shadow-lg card-premium p-6 flex flex-col relative ${panier.popular ? 'ring-1 ring-hd-primary/40 lg:scale-105 z-10' : ''}`}>
                 {panier.popular && (
                   <span className="badge-popular absolute -top-3 right-6 text-white text-[11px] font-bold px-3 py-1 rounded-full">
                     {t('common.popular')}
@@ -178,25 +206,31 @@ const Home: React.FC = () => {
                 >
                   {t('common.order')}
                 </button>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services */}
       <section className="py-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center w-full">
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center w-full"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-40px' }}
+        >
           {services.map((service, index) => (
-            <div key={index} className="p-5">
-              <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <motion.div key={index} variants={fadeUp} className="p-5">
+              <div className="w-16 h-16 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-md hover:scale-110 transition-transform">
                 <i className={`fas ${service.icon} text-white text-2xl`}></i>
               </div>
               <h4 className="font-semibold text-base sm:text-lg text-hd-secondary">{service.title}</h4>
               <p className="text-xs sm:text-sm text-hd-text">{service.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Loyalty Program Teaser */}
@@ -237,8 +271,9 @@ const Home: React.FC = () => {
       {/* Subscription CTA */}
       <section className="py-24 px-6 bg-hd-light border-t border-hd-border">
         <div className="w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
-          <div className="w-20 h-20 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-            <i className="fas fa-crown text-4xl text-white"></i>
+          <div className="inline-flex items-center gap-3 bg-hd-primary/10 rounded-full px-6 py-3 border border-hd-primary/30 mb-6">
+            <i className="fas fa-crown text-hd-primary text-xl"></i>
+            <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">Service Premium</span>
           </div>
           <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-hd-secondary mb-6">{t('home.subscriptionTitle')}</h2>
           <p className="text-lg sm:text-xl md:text-2xl text-hd-text max-w-3xl mx-auto font-light leading-relaxed">{t('home.subscriptionText')}</p>

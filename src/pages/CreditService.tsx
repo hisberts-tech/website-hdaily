@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { useNotifications } from '../context/NotificationContext';
 import { api, CreditApplicationPayload } from '../lib/api';
 
 const CreditService: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useLanguage();
+  const { addNotification } = useNotifications();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,23 +27,28 @@ const CreditService: React.FC = () => {
     try {
       await api.applyForCredit(payload);
       form.reset();
-      alert('Votre demande de crédit a été soumise avec succès.');
+      addNotification('Votre demande de crédit a été soumise avec succès.', 'success');
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Échec de la soumission de la demande.');
+      addNotification(err instanceof Error ? err.message : 'Échec de la soumission de la demande.', 'error');
     } finally {
       setFormSubmitted(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-hd-light pt-24 pb-20">
+    <div className="min-h-screen bg-hd-light pt-16 md:pt-24 pb-20">
       {/* Hero Section */}
-      <section className="px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 mb-16 text-center">
-        <div className="w-20 h-20 bg-hd-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-          <i className="fas fa-credit-card text-4xl text-white"></i>
+      <section className="pt-8 pb-16 md:pt-12 md:pb-24 bg-gradient-to-br from-hd-cream to-hd-light">
+        <div className="px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40 text-center">
+          <div className="inline-flex items-center gap-2 bg-hd-surface/70 backdrop-blur-sm rounded-full px-5 py-2 border border-hd-primary/20 mb-6 shadow-sm">
+            <span className="w-2.5 h-2.5 rounded-full bg-hd-primary animate-pulse"></span>
+            <span className="text-sm uppercase tracking-[0.2em] text-hd-primary font-bold">{t('credit.badge')}</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-hd-secondary mb-6 leading-[1.1]">
+            {t('credit.title')}
+          </h1>
+          <p className="text-lg sm:text-xl text-hd-text max-w-3xl mx-auto font-light leading-relaxed">{t('credit.subtitle')}</p>
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif text-hd-secondary mb-6">{t('credit.title')}</h1>
-        <p className="text-lg sm:text-xl text-hd-text max-w-3xl mx-auto font-light leading-relaxed">{t('credit.subtitle')}</p>
       </section>
 
       {/* Credit Levels */}

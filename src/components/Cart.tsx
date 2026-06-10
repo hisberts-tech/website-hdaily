@@ -76,7 +76,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       {/* Cart Modal */}
       {isOpen && (
         <div className="fixed inset-0 bg-black/50 z-50 animate-fade-in">
-          <div className="absolute right-0 top-0 h-full w-full sm:max-w-sm md:max-w-md bg-white shadow-xl animate-slide-up">
+          <div className="absolute right-0 top-0 h-full w-full sm:max-w-sm md:max-w-md bg-hd-surface shadow-xl animate-slide-up">
             <div className="flex flex-col h-full">
               {/* Cart Header */}
               <div className="flex items-center justify-between p-4 border-b border-hd-border">
@@ -105,7 +105,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                 ) : (
                   <div className="space-y-4">
                     {items.map((item) => (
-                      <div key={item.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                      <div key={item.id} className="flex items-center gap-4 p-3 bg-hd-light rounded-lg">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -116,18 +116,18 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         />
                         <div className="flex-1">
                           <h4 className="font-medium text-sm text-hd-secondary">{item.name}</h4>
-                          <p className="text-xs text-gray-500">{item.price} HTG/{item.unit}</p>
+                          <p className="text-xs text-hd-muted">{item.price} HTG/{item.unit}</p>
                           <div className="flex items-center gap-2 mt-1">
                             <button
                               onClick={() => handleQuantityChange(item.id, -1)}
-                              className="w-6 h-6 bg-gray-200 rounded text-xs hover:bg-gray-300 transition-colors"
+                              className="w-6 h-6 bg-hd-light border border-hd-border rounded text-xs hover:bg-hd-primary hover:text-white hover:border-hd-primary transition-colors"
                             >
                               -
                             </button>
                             <span className="text-sm font-medium">{item.quantity}</span>
                             <button
                               onClick={() => handleQuantityChange(item.id, 1)}
-                              className="w-6 h-6 bg-gray-200 rounded text-xs hover:bg-gray-300 transition-colors"
+                              className="w-6 h-6 bg-hd-light border border-hd-border rounded text-xs hover:bg-hd-primary hover:text-white hover:border-hd-primary transition-colors"
                             >
                               +
                             </button>

@@ -5,7 +5,7 @@ import { useNotifications } from '../context/NotificationContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const Boutique: React.FC = () => {
-  const { filteredProducts, selectedCategory, setSelectedCategory, searchQuery, setSearchQuery } = useProducts();
+  const { filteredProducts, selectedCategory, setSelectedCategory, searchQuery, setSearchQuery, loading } = useProducts();
   const { addToCart } = useCart();
   const { addNotification } = useNotifications();
   const { t } = useLanguage();
@@ -115,7 +115,21 @@ const Boutique: React.FC = () => {
 
       {/* Products Grid */}
       <section className="pb-24 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
-        {filteredProducts.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 xl:gap-8 w-full">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="card-premium subtle-border animate-pulse">
+                <div className="h-48 bg-hd-light rounded-t-2xl"></div>
+                <div className="p-4 space-y-3">
+                  <div className="h-5 bg-hd-light rounded w-3/4"></div>
+                  <div className="h-4 bg-hd-light rounded w-full"></div>
+                  <div className="h-4 bg-hd-light rounded w-1/2"></div>
+                  <div className="h-10 bg-hd-light rounded-xl"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <div className="text-center py-16 xl:py-24 bg-hd-surface rounded-3xl shadow-sm border border-hd-border max-w-4xl mx-auto">
             <i className="fas fa-search text-5xl text-gray-300 mb-6"></i>
             <h3 className="text-2xl font-semibold text-hd-secondary mb-3">{t('boutique.noResults')}</h3>
@@ -187,7 +201,7 @@ const Boutique: React.FC = () => {
       {/* Pagination */}
       {filteredProducts.length > 0 && (
         <section className="pb-20 w-full px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-40">
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center items-center gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
@@ -195,36 +209,19 @@ const Boutique: React.FC = () => {
             >
               <i className="fas fa-chevron-left"></i>
             </button>
-            <button
-              onClick={() => { setSelectedCategory('frais'); setCurrentPage(1); }}
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                selectedCategory === 'frais'
-                  ? 'bg-hd-primary text-white'
-                  : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
-              }`}
-            >
-              1
-            </button>
-            <button
-              onClick={() => { setSelectedCategory('alimentaires'); setCurrentPage(1); }}
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                selectedCategory === 'alimentaires'
-                  ? 'bg-hd-primary text-white'
-                  : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
-              }`}
-            >
-              2
-            </button>
-            <button
-              onClick={() => { setSelectedCategory('quotidiens'); setCurrentPage(1); }}
-              className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                selectedCategory === 'quotidiens'
-                  ? 'bg-hd-primary text-white'
-                  : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
-              }`}
-            >
-              3
-            </button>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => handlePageChange(i + 1)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  currentPage === i + 1
+                    ? 'bg-hd-primary text-white shadow-md'
+                    : 'border border-hd-border text-hd-secondary hover:bg-hd-primary hover:text-white'
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}

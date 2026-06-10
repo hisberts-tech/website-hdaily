@@ -43,7 +43,7 @@ const Contact: React.FC = () => {
 
   const hours = [
     { day: 'Lundi - Vendredi', hours: '8h - 20h' },
-    { day: 'Samedi',           hours: '8h - 14h' },
+    { day: 'Samedi',           hours: '8h - 20h' },
     { day: 'Dimanche',         hours: '9h - 14h' },
   ];
 
@@ -157,14 +157,40 @@ const Contact: React.FC = () => {
 
               <div className="bg-hd-surface rounded-2xl p-6 shadow-lg">
                 <h3 className="font-semibold text-lg text-hd-secondary mb-4">{t('contact.locationTitle')}</h3>
-                <div className="aspect-video bg-hd-light rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-map-marked-alt text-4xl text-hd-muted"></i>
+                <a
+                  href="https://maps.google.com/?q=Port-au-Prince,+Haïti"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block mb-4"
+                >
+                  <div className="relative aspect-video bg-gradient-to-br from-hd-primary/10 to-emerald-50 rounded-xl flex flex-col items-center justify-center gap-3 border border-hd-primary/20 group-hover:border-hd-primary/50 transition-all overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.06]" style={{backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2310b981' fill-rule='evenodd'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/svg%3E\")"}}></div>
+                    <div className="w-14 h-14 bg-hd-primary rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <i className="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <div className="text-center">
+                      <p className="font-semibold text-hd-secondary">Port-au-Prince, Haïti</p>
+                      <p className="text-sm text-hd-muted flex items-center justify-center gap-1 mt-1">
+                        <i className="fas fa-external-link-alt text-xs text-hd-primary"></i>
+                        Ouvrir dans Google Maps
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <div className="space-y-2 text-sm text-hd-text">
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-map-marker-alt text-hd-primary w-4 text-center"></i>
+                    <span>Port-au-Prince, Haïti</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <i className="fas fa-phone text-hd-primary w-4 text-center"></i>
+                    <a href="tel:+50939134651" className="hover:text-hd-primary transition-colors">+509 3913 4651</a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <i className="far fa-envelope text-hd-primary w-4 text-center"></i>
+                    <a href="mailto:hisberts@gmail.com" className="hover:text-hd-primary transition-colors">hisberts@gmail.com</a>
+                  </div>
                 </div>
-                <p className="text-hd-text">
-                  <strong>{t('contact.address')}:</strong> Port-au-Prince, Haïti<br />
-                  <strong>{t('contact.phone')}:</strong> +509 3913 4651<br />
-                  <strong>{t('contact.email')}:</strong> hisberts@gmail.com
-                </p>
               </div>
             </div>
           </div>
