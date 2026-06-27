@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import logo from '../assets/images/ChatGPT_Image_7_mars_2026__10_43_31-removebg-preview.svg';
+import logo from '../assets/images/logo.svg';
 
 const Footer: React.FC = () => {
   const { t } = useLanguage();
