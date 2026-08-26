@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useLoyalty } from '../context/LoyaltyContext';
 import { useLanguage } from '../context/LanguageContext';
 import ThemeLanguageSwitcher from './ThemeLanguageSwitcher';
-import logo from '../assets/images/ChatGPT_Image_7_mars_2026__10_43_31-removebg-preview.svg';
+import logo from '../assets/images/logo.svg';
 
 interface HeaderProps {
   onSubscriptionClick: () => void;
@@ -104,6 +104,13 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCartClick }) => 
             >
               <i className="fas fa-crown"></i> {t('nav.subscription')}
             </button>
+
+            <Link
+              to="/admin"
+              className="hidden lg:flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition"
+            >
+              <i className="fas fa-shield-alt"></i> Admin
+            </Link>
           </div>
         </div>
       </header>
