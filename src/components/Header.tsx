@@ -104,13 +104,6 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCartClick }) => 
             >
               <i className="fas fa-crown"></i> {t('nav.subscription')}
             </button>
-
-            <Link
-              to="/admin"
-              className="hidden lg:flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-700 transition"
-            >
-              <i className="fas fa-shield-alt"></i> Admin
-            </Link>
           </div>
         </div>
       </header>
