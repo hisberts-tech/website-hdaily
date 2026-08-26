@@ -15,6 +15,9 @@ import Contact from './pages/Contact';
 import Abonnement from './pages/Abonnement';
 import CreditService from './pages/CreditService';
 import Fidelite from './pages/Fidelite';
+import Checkout from './pages/Checkout';
+import OrderConfirmation from './pages/OrderConfirmation';
+import OrderHistory from './pages/OrderHistory';
 
 function App() {
   return (
@@ -35,6 +38,9 @@ function App() {
                 <Route path="/abonnement" element={<Abonnement />} />
                 <Route path="/credit" element={<CreditService />} />
                 <Route path="/fidelite" element={<Fidelite />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/orders/:id" element={<OrderConfirmation />} />
+                <Route path="/mes-commandes" element={<OrderHistory />} />
               </Routes>
             </Layout>
           </CartProvider>

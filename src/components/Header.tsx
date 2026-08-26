@@ -24,12 +24,13 @@ const Header: React.FC<HeaderProps> = ({ onSubscriptionClick, onCartClick }) => 
   };
 
   const navigation = [
-    { name: t('nav.home'),      href: '/',          icon: 'fa-home' },
-    { name: t('nav.boutique'),  href: '/boutique',  icon: 'fa-shopping-bag' },
-    { name: t('nav.paniers'),   href: '/paniers',   icon: 'fa-gift' },
-    { name: t('nav.services'),  href: '/services',  icon: 'fa-concierge-bell' },
-    { name: t('nav.fidelite'),  href: '/fidelite',  icon: 'fa-star' },
-    { name: t('nav.contact'),   href: '/contact',   icon: 'fa-envelope' },
+    { name: t('nav.home'),      href: '/',               icon: 'fa-home' },
+    { name: t('nav.boutique'),  href: '/boutique',       icon: 'fa-shopping-bag' },
+    { name: t('nav.paniers'),   href: '/paniers',        icon: 'fa-gift' },
+    { name: t('nav.services'),  href: '/services',       icon: 'fa-concierge-bell' },
+    { name: t('nav.fidelite'),  href: '/fidelite',       icon: 'fa-star' },
+    { name: 'Mes commandes',    href: '/mes-commandes',  icon: 'fa-box' },
+    { name: t('nav.contact'),   href: '/contact',        icon: 'fa-envelope' },
   ];
 
   const handleWhatsAppClick = () => {

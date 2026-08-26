@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage, Language } from '../context/LanguageContext';
 
@@ -6,33 +6,76 @@ interface Props {
   compact?: boolean; // used in mobile menu (stacks vertically)
 }
 
+const LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'ht', label: 'Kreyòl', flag: '🇭🇹' },
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+];
+
 const ThemeLanguageSwitcher: React.FC<Props> = ({ compact }) => {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'fr', label: 'FR' },
-    { code: 'ht', label: 'HT' },
-  ];
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
+
+  const current = LANGUAGES.find((l) => l.code === language) ?? LANGUAGES[0];
+
+  const handleSelect = (code: Language) => {
+    setLanguage(code);
+    setIsOpen(false);
+  };
+
+  const LanguageMenu = (
+    <div
+      className={`absolute ${compact ? 'left-0' : 'right-0'} top-full mt-2 w-40 bg-hd-surface border border-hd-border rounded-xl shadow-lg overflow-hidden z-50`}
+      role="menu"
+    >
+      {LANGUAGES.map(({ code, label, flag }) => (
+        <button
+          key={code}
+          role="menuitem"
+          onClick={() => handleSelect(code)}
+          className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-left transition-colors ${
+            language === code
+              ? 'bg-hd-primary/10 text-hd-primary font-semibold'
+              : 'text-hd-secondary hover:bg-hd-light'
+          }`}
+        >
+          <span className="text-base leading-none">{flag}</span>
+          <span>{label}</span>
+          {language === code && <i className="fas fa-check ml-auto text-xs"></i>}
+        </button>
+      ))}
+    </div>
+  );
 
   if (compact) {
     return (
       <div className="flex items-center gap-3 px-3 py-2">
-        {/* Language toggle */}
-        <div className="flex items-center gap-1 bg-hd-light rounded-full p-0.5 border border-hd-border">
-          {languages.map(({ code, label }) => (
-            <button
-              key={code}
-              onClick={() => setLanguage(code)}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
-                language === code
-                  ? 'bg-hd-primary text-white shadow-sm'
-                  : 'text-hd-muted hover:text-hd-secondary'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+        {/* Language menu trigger */}
+        <div className="relative" ref={menuRef}>
+          <button
+            onClick={() => setIsOpen((v) => !v)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-hd-border bg-hd-light text-hd-secondary hover:border-hd-primary hover:text-hd-primary transition-all"
+            aria-haspopup="menu"
+            aria-expanded={isOpen}
+            aria-label="Choisir la langue"
+          >
+            <i className="fas fa-globe text-xs"></i>
+            <span>{current.flag}</span>
+          </button>
+          {isOpen && LanguageMenu}
         </div>
 
         {/* Theme toggle */}
@@ -50,21 +93,19 @@ const ThemeLanguageSwitcher: React.FC<Props> = ({ compact }) => {
 
   return (
     <div className="flex items-center gap-2">
-      {/* Language pills */}
-      <div className="flex items-center bg-hd-light rounded-full p-0.5 border border-hd-border">
-        {languages.map(({ code, label }) => (
-          <button
-            key={code}
-            onClick={() => setLanguage(code)}
-            className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
-              language === code
-                ? 'bg-hd-primary text-white shadow-sm'
-                : 'text-hd-muted hover:text-hd-secondary'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+      {/* Language icon trigger */}
+      <div className="relative" ref={menuRef}>
+        <button
+          onClick={() => setIsOpen((v) => !v)}
+          className="w-8 h-8 rounded-full flex items-center justify-center border border-hd-border bg-hd-light text-hd-secondary hover:border-hd-primary hover:text-hd-primary transition-all"
+          aria-haspopup="menu"
+          aria-expanded={isOpen}
+          aria-label="Choisir la langue"
+          title="Français / Kreyòl / English"
+        >
+          <i className="fas fa-globe text-xs"></i>
+        </button>
+        {isOpen && LanguageMenu}
       </div>
 
       {/* Theme icon button */}

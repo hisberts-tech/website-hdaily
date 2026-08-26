@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import fr, { TranslationKeys } from '../translations/fr';
 import ht from '../translations/ht';
+import en from '../translations/en';
 
-export type Language = 'fr' | 'ht';
+export type Language = 'fr' | 'ht' | 'en';
 
-const dictionaries: Record<Language, TranslationKeys> = { fr, ht };
+const dictionaries: Record<Language, TranslationKeys> = { fr, ht, en };
 
 // Resolve a dot-path like "nav.home" from a nested object
 function resolve(obj: Record<string, unknown>, path: string): string {
@@ -31,9 +32,10 @@ const STORAGE_KEY = 'hdaily-lang';
 function getInitialLang(): Language {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'fr' || saved === 'ht') return saved;
+    if (saved === 'fr' || saved === 'ht' || saved === 'en') return saved;
     const browser = navigator.language.slice(0, 2).toLowerCase();
     if (browser === 'ht') return 'ht';
+    if (browser === 'en') return 'en';
   } catch { /* ignore */ }
   return 'fr';
 }
