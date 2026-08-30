@@ -1,11 +1,24 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { Category, Prisma } from '@prisma/client';
+import { Category, Prisma, Product } from '@prisma/client';
 import { prisma } from '../db.js';
 import { asyncHandler, HttpError } from '../middleware/error.js';
 import { requireAdmin } from '../middleware/auth.js';
 
 export const router = Router();
+
+// Collapse the flat bulk* columns into the nested `bulk` object the web client
+// expects (see website-hdaily/src/types Product).
+function serializeProduct(p: Product) {
+  const { bulkUnit, bulkPrice, bulkMinQty, ...rest } = p;
+  return {
+    ...rest,
+    bulk:
+      bulkUnit != null && bulkPrice != null
+        ? { unit: bulkUnit, price: bulkPrice, minQty: bulkMinQty ?? 1 }
+        : undefined,
+  };
+}
 
 const listQuery = z.object({
   category: z.enum(['all', 'frais', 'alimentaires', 'quotidiens']).optional(),
@@ -28,7 +41,7 @@ router.get(
     }
 
     const products = await prisma.product.findMany({ where, orderBy: { id: 'asc' } });
-    res.json(products);
+    res.json(products.map(serializeProduct));
   })
 );
 
@@ -41,11 +54,11 @@ router.get(
 
     const product = await prisma.product.findUnique({ where: { id } });
     if (!product || !product.active) throw new HttpError(404, 'Product not found');
-    res.json(product);
+    res.json(serializeProduct(product));
   })
 );
 
-const productInput = z.object({
+const productShape = z.object({
   name: z.string().min(1),
   category: z.enum(['frais', 'alimentaires', 'quotidiens']),
   price: z.number().int().nonnegative(),
@@ -54,16 +67,30 @@ const productInput = z.object({
   description: z.string().min(1),
   stock: z.number().int().nonnegative().default(0),
   badge: z.string().optional(),
+  // Wholesale option: pass unit + price together, or omit both.
+  bulkUnit: z.string().min(1).nullish(),
+  bulkPrice: z.number().int().nonnegative().nullish(),
+  bulkMinQty: z.number().int().positive().nullish(),
 });
+
+const bulkPaired = (d: { bulkUnit?: string | null; bulkPrice?: number | null }): boolean =>
+  (d.bulkUnit == null) === (d.bulkPrice == null);
+const bulkPairMsg = {
+  message: 'bulkUnit et bulkPrice doivent être fournis ensemble',
+  path: ['bulkPrice'] as (string | number)[],
+};
+
+const productCreate = productShape.refine(bulkPaired, bulkPairMsg);
+const productUpdate = productShape.partial().refine(bulkPaired, bulkPairMsg);
 
 // POST /api/products (admin)
 router.post(
   '/',
   requireAdmin,
   asyncHandler(async (req, res) => {
-    const data = productInput.parse(req.body);
+    const data = productCreate.parse(req.body);
     const product = await prisma.product.create({ data });
-    res.status(201).json(product);
+    res.status(201).json(serializeProduct(product));
   })
 );
 
@@ -74,9 +101,9 @@ router.patch(
   asyncHandler(async (req, res) => {
     const id = Number(req.params.id);
     if (!Number.isInteger(id)) throw new HttpError(400, 'Invalid product id');
-    const data = productInput.partial().parse(req.body);
+    const data = productUpdate.parse(req.body);
     const product = await prisma.product.update({ where: { id }, data });
-    res.json(product);
+    res.json(serializeProduct(product));
   })
 );
 

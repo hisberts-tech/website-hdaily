@@ -20,6 +20,12 @@ export const env = {
     .filter(Boolean),
   // MonCash merchant number that customers send manual payments to.
   moncashNumber: process.env.MONCASH_NUMBER ?? '+509 3913 4651',
+  // Twilio SMS (optional — leave blank to disable SMS notifications)
+  twilioAccountSid: process.env.TWILIO_ACCOUNT_SID ?? '',
+  twilioAuthToken: process.env.TWILIO_AUTH_TOKEN ?? '',
+  twilioFromNumber: process.env.TWILIO_FROM_NUMBER ?? '',
+  // Admin phone number that receives new-order SMS alerts
+  adminPhone: process.env.ADMIN_PHONE ?? '',
 };
 
 export const isProd = env.nodeEnv === 'production';

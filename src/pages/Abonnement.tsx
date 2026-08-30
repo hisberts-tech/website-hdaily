@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNotifications } from '../context/NotificationContext';
 import { useLoyalty, SUBSCRIPTION_BONUS } from '../context/LoyaltyContext';
 import { useLanguage } from '../context/LanguageContext';
-import { api, SubscriptionPayload } from '../lib/api';
+import { api, SubscriptionPayload, SubscriptionPlan } from '../lib/api';
 import MonCashPaymentModal, { MonCashPlan } from '../components/MonCashPaymentModal';
 
 const Abonnement: React.FC = () => {
@@ -13,6 +13,8 @@ const Abonnement: React.FC = () => {
   const [selectedPlan, setSelectedPlan] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
   const [moncashPlan, setMoncashPlan] = useState<MonCashPlan | null>(null);
+  const [subscriptionPlans, setSubscriptionPlans] = useState<SubscriptionPlan[]>([]);
+  const [plansLoading, setPlansLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,59 +27,19 @@ const Abonnement: React.FC = () => {
     creditRequest: false
   });
 
-  const subscriptionPlans = [
-    {
-      id: 'basic',
-      name: 'Abonnement Basic',
-      price: 2500,
-      originalPrice: 3000,
-      frequency: t('common.perWeek'),
-      description: 'Idéal pour les besoins essentiels',
-      features: [
-        'Livraison hebdomadaire',
-        'Panier Basic personnalisé',
-        '10% de réduction sur tous les produits',
-        "Accès au crédit Express (jusqu'à 5000 HTG)",
-        'Support client prioritaire'
-      ],
-      popular: false
-    },
-    {
-      id: 'family',
-      name: 'Abonnement Family',
-      price: 4500,
-      originalPrice: 5500,
-      frequency: t('common.perWeek'),
-      description: 'Parfait pour toute la famille',
-      features: [
-        'Livraison hebdomadaire ou mensuelle',
-        'Panier Family sur mesure',
-        '15% de réduction sur tous les produits',
-        "Accès au crédit Standard (jusqu'à 15000 HTG)",
-        'Livraison prioritaire',
-        'Produits exclusifs'
-      ],
-      popular: true
-    },
-    {
-      id: 'premium',
-      name: 'Abonnement Premium',
-      price: 7500,
-      originalPrice: 9000,
-      frequency: t('common.perWeek'),
-      description: "L'excellence H-Daily",
-      features: [
-        'Livraison flexible (hebdomadaire/mensuelle)',
-        'Panier Premium ultra-personnalisé',
-        '20% de réduction sur tous les produits',
-        "Accès au crédit Premium (jusqu'à 30000 HTG)",
-        'Livraison express en moins de 12h',
-        'Produits bio et rares',
-        'Conseiller personnel dédié'
-      ],
-      popular: false
-    }
-  ];
+  useEffect(() => {
+    api.getPlans()
+      .then(setSubscriptionPlans)
+      .catch(() => {
+        // Fall back to defaults so the page still renders if the API is down
+        setSubscriptionPlans([
+          { id: 'basic',   name: 'Abonnement Basic',   price: 2500, originalPrice: 3000, frequency: 'par semaine', description: 'Idéal pour les besoins essentiels',  features: ["Livraison hebdomadaire", "Panier Basic personnalisé", "10% de réduction sur tous les produits", "Accès au crédit Express (jusqu'à 5000 HTG)", "Support client prioritaire"], popular: false },
+          { id: 'family',  name: 'Abonnement Family',  price: 4500, originalPrice: 5500, frequency: 'par semaine', description: 'Parfait pour toute la famille',        features: ["Livraison hebdomadaire ou mensuelle", "Panier Family sur mesure", "15% de réduction sur tous les produits", "Accès au crédit Standard (jusqu'à 15000 HTG)", "Livraison prioritaire", "Produits exclusifs"], popular: true },
+          { id: 'premium', name: 'Abonnement Premium', price: 7500, originalPrice: 9000, frequency: 'par semaine', description: "L'excellence H-Daily",                 features: ["Livraison flexible (hebdomadaire/mensuelle)", "Panier Premium ultra-personnalisé", "20% de réduction sur tous les produits", "Accès au crédit Premium (jusqu'à 30000 HTG)", "Livraison express en moins de 12h", "Produits bio et rares", "Conseiller personnel dédié"], popular: false },
+        ]);
+      })
+      .finally(() => setPlansLoading(false));
+  }, []);
 
   const paymentMethods = [
     { id: 'moncash', name: 'MonCash',               icon: 'fas fa-mobile-alt' },
@@ -185,7 +147,12 @@ const Abonnement: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 w-full mb-16">
-            {subscriptionPlans.map((plan) => (
+            {plansLoading
+              ? [1, 2, 3].map((n) => (
+                  <div key={n} className="card-premium subtle-border animate-pulse h-96 bg-hd-surface/60 rounded-2xl" />
+                ))
+              : null}
+            {!plansLoading && subscriptionPlans.map((plan) => (
               <div
                 key={plan.id}
                 className={`card-premium subtle-border flex flex-col relative cursor-pointer transition-all ${

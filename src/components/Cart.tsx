@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useNotifications } from '../context/NotificationContext';
 import { useLoyalty, pointsForPurchase } from '../context/LoyaltyContext';
 import { useLanguage } from '../context/LanguageContext';
+import { lineIdOf, itemUnitPrice, itemUnitLabel } from '../lib/cart';
 
 interface CartProps {
   isOpen: boolean;
@@ -12,41 +14,25 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const { items, getTotalPrice, updateQuantity, removeFromCart } = useCart();
   const { addNotification } = useNotifications();
-  const { awardPurchase } = useLoyalty();
+  const { } = useLoyalty();
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
     if (items.length === 0) {
       addNotification('Votre panier est vide', 'error');
       return;
     }
-
-    let message = "Bonjour! Je souhaite commander les produits suivants:\n\n";
-    let total = 0;
-    const totalItems = items.reduce((s, i) => s + i.quantity, 0);
-
-    items.forEach((item, index) => {
-      const itemTotal = item.price * item.quantity;
-      total += itemTotal;
-      message += `${index + 1}. ${item.name} (${item.quantity} ${item.unit}) - ${item.price} HTG/${item.unit} = ${itemTotal} HTG\n`;
-    });
-
-    message += `\nTotal: ${total} HTG`;
-
-    const whatsappUrl = `https://wa.me/50939134651?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-
-    const earned = awardPurchase(total, totalItems);
-    addNotification(`Commande envoyée via WhatsApp ! +${earned} points de fidélité gagnés 🎉`, 'success');
     onClose();
+    navigate('/checkout');
   };
 
-  const handleQuantityChange = (productId: number, change: number) => {
-    updateQuantity(productId, change);
+  const handleQuantityChange = (lineId: string, change: number) => {
+    updateQuantity(lineId, change);
   };
 
-  const handleRemoveItem = (productId: number) => {
-    removeFromCart(productId);
+  const handleRemoveItem = (lineId: string) => {
+    removeFromCart(lineId);
     addNotification('Produit retiré du panier', 'info');
   };
 
@@ -104,8 +90,11 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {items.map((item) => (
-                      <div key={item.id} className="flex items-center gap-4 p-3 bg-hd-light rounded-lg">
+                    {items.map((item) => {
+                      const lineId = lineIdOf(item);
+                      const unitPrice = itemUnitPrice(item);
+                      return (
+                      <div key={lineId} className="flex items-center gap-4 p-3 bg-hd-light rounded-lg">
                         <img
                           src={item.image}
                           alt={item.name}
@@ -115,24 +104,33 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                           }}
                         />
                         <div className="flex-1">
-                          <h4 className="font-medium text-sm text-hd-secondary">{item.name}</h4>
-                          <p className="text-xs text-hd-muted">{item.price} HTG/{item.unit}</p>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-medium text-sm text-hd-secondary">{item.name}</h4>
+                            <span className={`text-[10px] font-bold uppercase px-1.5 py-0.5 rounded ${
+                              item.variant === 'gros'
+                                ? 'bg-hd-primary/15 text-hd-primary'
+                                : 'bg-hd-border/60 text-hd-muted'
+                            }`}>
+                              {item.variant === 'gros' ? t('boutique.modeGros') : t('boutique.modeDetail')}
+                            </span>
+                          </div>
+                          <p className="text-xs text-hd-muted">{unitPrice} HTG/{itemUnitLabel(item)}</p>
                           <div className="flex items-center gap-2 mt-1">
                             <button
-                              onClick={() => handleQuantityChange(item.id, -1)}
+                              onClick={() => handleQuantityChange(lineId, -1)}
                               className="w-6 h-6 bg-hd-light border border-hd-border rounded text-xs hover:bg-hd-primary hover:text-white hover:border-hd-primary transition-colors"
                             >
                               -
                             </button>
                             <span className="text-sm font-medium">{item.quantity}</span>
                             <button
-                              onClick={() => handleQuantityChange(item.id, 1)}
+                              onClick={() => handleQuantityChange(lineId, 1)}
                               className="w-6 h-6 bg-hd-light border border-hd-border rounded text-xs hover:bg-hd-primary hover:text-white hover:border-hd-primary transition-colors"
                             >
                               +
                             </button>
                             <button
-                              onClick={() => handleRemoveItem(item.id)}
+                              onClick={() => handleRemoveItem(lineId)}
                               className="ml-auto text-red-500 hover:text-red-700 transition-colors"
                             >
                               <i className="fas fa-trash text-xs"></i>
@@ -141,11 +139,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                         </div>
                         <div className="text-right">
                           <p className="font-semibold text-sm text-hd-secondary">
-                            {item.price * item.quantity} HTG
+                            {unitPrice * item.quantity} HTG
                           </p>
                         </div>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -169,8 +168,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
                     </span>
                   </div>
                   <div className="space-y-2">
-                    <button onClick={handleCheckout} className="w-full btn-primary">
-                      {t('cart.orderWhatsapp')}
+                    <button onClick={handleCheckout} className="w-full btn-primary flex items-center justify-center gap-2">
+                      <i className="fas fa-lock text-sm"></i>
+                      Passer la commande
                     </button>
                     <button onClick={onClose} className="w-full btn-outline">
                       {t('cart.continueShopping')}

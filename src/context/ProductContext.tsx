@@ -28,7 +28,8 @@ const initialProducts: Product[] = [
     image: "/images/sac du riz.webp",
     description: "Tomates rouges juteuses, cultivées localement",
     stock: 50,
-    badge: "Bio"
+    badge: "Bio",
+    bulk: { unit: "caisse ~20 kg", price: 2500, minQty: 1 }
   },
   {
     id: 2,
@@ -39,7 +40,8 @@ const initialProducts: Product[] = [
     image: "/images/sac du riz.webp",
     description: "Laitues fraîches et croquantes pour vos salades",
     stock: 30,
-    badge: "Nouveau"
+    badge: "Nouveau",
+    bulk: { unit: "caisse x24", price: 1600, minQty: 1 }
   },
   {
     id: 3,
@@ -50,6 +52,7 @@ const initialProducts: Product[] = [
     image: "/images/sac du riz.webp",
     description: "Carottes douces et colorées, riches en vitamines",
     stock: 45,
+    bulk: { unit: "sac 10 kg", price: 1000, minQty: 1 }
   },
   {
     id: 4,
@@ -60,7 +63,8 @@ const initialProducts: Product[] = [
     image: "/images/sac du riz.webp",
     description: "Bananes sucrées cultivées en Haïti",
     stock: 100,
-    badge: "Local"
+    badge: "Local",
+    bulk: { unit: "régime (~10 douzaines)", price: 850, minQty: 1 }
   },
 
   // Produits Alimentaires
@@ -69,11 +73,12 @@ const initialProducts: Product[] = [
     name: "Riz Premium",
     category: "alimentaires",
     price: 350,
-    unit: "kg",
+    unit: "marmite",
     image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Riz de haute qualité, grain long",
     stock: 200,
-    badge: "Best-seller"
+    badge: "Best-seller",
+    bulk: { unit: "sac 25 kg", price: 2800, minQty: 1 }
   },
   {
     id: 6,
@@ -84,6 +89,7 @@ const initialProducts: Product[] = [
     image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Pâtes authentiques importées d'Italie",
     stock: 80,
+    bulk: { unit: "carton x20", price: 4800, minQty: 1 }
   },
   {
     id: 7,
@@ -94,17 +100,19 @@ const initialProducts: Product[] = [
     image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Huile d'olive premium, première pression à froid",
     stock: 40,
-    badge: "Premium"
+    badge: "Premium",
+    bulk: { unit: "carton 12 x 1 L", price: 9000, minQty: 1 }
   },
   {
     id: 8,
     name: "Farine de Blé",
     category: "alimentaires",
     price: 180,
-    unit: "kg",
+    unit: "marmite",
     image: "/images/pexels-bertellifotografia-30893333.jpg",
     description: "Farine de blé de qualité supérieure",
     stock: 150,
+    bulk: { unit: "sac 25 kg", price: 3800, minQty: 1 }
   },
 
   // Produits Quotidiens
@@ -117,7 +125,8 @@ const initialProducts: Product[] = [
     image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Savon liquide doux pour les mains",
     stock: 60,
-    badge: "Écologique"
+    badge: "Écologique",
+    bulk: { unit: "carton 12 x 1 L", price: 2500, minQty: 1 }
   },
   {
     id: 10,
@@ -128,6 +137,7 @@ const initialProducts: Product[] = [
     image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Essuie-tout de haute qualité, 3 rouleaux",
     stock: 100,
+    bulk: { unit: "carton x24", price: 2400, minQty: 1 }
   },
   {
     id: 11,
@@ -138,7 +148,8 @@ const initialProducts: Product[] = [
     image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Détergent biodegradable pour sols",
     stock: 35,
-    badge: "Bio"
+    badge: "Bio",
+    bulk: { unit: "bidon 20 L", price: 7800, minQty: 1 }
   },
   {
     id: 12,
@@ -149,6 +160,7 @@ const initialProducts: Product[] = [
     image: "/images/pexels-david-iloba-28486424-14881644.jpg",
     description: "Sacs poubelle résistants, 30 unités",
     stock: 120,
+    bulk: { unit: "carton x30", price: 3600, minQty: 1 }
   }
 ];
 

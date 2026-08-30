@@ -1,3 +1,14 @@
+// Deux façons d'acheter un produit :
+//  - 'detail' : à l'unité (kg, marmite, pièce, litre…) — prix/unité de base
+//  - 'gros'   : par conditionnement (sac, caisse, carton, bidon…)
+export type SaleVariant = 'gros' | 'detail';
+
+export interface BulkOption {
+  unit: string;   // ex : "sac 25 kg", "caisse ~20 kg", "carton x12"
+  price: number;  // HTG par unité de gros
+  minQty: number; // commande minimale (nombre d'unités de gros)
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -8,10 +19,12 @@ export interface Product {
   description: string;
   stock: number;
   badge?: string;
+  bulk?: BulkOption; // présent si le produit est aussi vendu en gros
 }
 
 export interface CartItem extends Product {
   quantity: number;
+  variant: SaleVariant;
 }
 
 export interface SubscriptionPlan {

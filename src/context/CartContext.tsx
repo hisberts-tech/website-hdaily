@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import { CartItem, Product } from '../types';
+import { CartItem, Product, SaleVariant } from '../types';
+import { cartLineId, lineIdOf, itemUnitPrice } from '../lib/cart';
 
 interface CartState {
   items: CartItem[];
@@ -8,9 +9,9 @@ interface CartState {
 }
 
 interface CartContextType extends CartState {
-  addToCart: (product: Product, quantity?: number) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, change: number) => void;
+  addToCart: (product: Product, quantity?: number, variant?: SaleVariant) => void;
+  removeFromCart: (lineId: string) => void;
+  updateQuantity: (lineId: string, change: number) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -18,85 +19,97 @@ interface CartContextType extends CartState {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const sumTotal = (items: CartItem[]) =>
+  items.reduce((sum, item) => sum + itemUnitPrice(item) * item.quantity, 0);
+const sumCount = (items: CartItem[]) => items.reduce((sum, item) => sum + item.quantity, 0);
+
 type CartAction =
-  | { type: 'ADD_TO_CART'; payload: { product: Product; quantity: number } }
-  | { type: 'REMOVE_FROM_CART'; payload: number }
-  | { type: 'UPDATE_QUANTITY'; payload: { productId: number; change: number } }
+  | { type: 'ADD_TO_CART'; payload: { product: Product; quantity: number; variant: SaleVariant } }
+  | { type: 'REMOVE_FROM_CART'; payload: string }
+  | { type: 'UPDATE_QUANTITY'; payload: { lineId: string; change: number } }
   | { type: 'CLEAR_CART' }
   | { type: 'LOAD_CART'; payload: CartItem[] };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_TO_CART': {
-      const { product, quantity } = action.payload;
-      const existingItem = state.items.find(item => item.id === product.id);
-      
+      const { product, quantity, variant } = action.payload;
+      const lineId = cartLineId(product.id, variant);
+      const existingItem = state.items.find(item => lineIdOf(item) === lineId);
+
       let newItems: CartItem[];
       if (existingItem) {
         newItems = state.items.map(item =>
-          item.id === product.id
+          lineIdOf(item) === lineId
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        newItems = [...state.items, { ...product, quantity }];
+        newItems = [...state.items, { ...product, quantity, variant }];
       }
-      
+
       return {
         ...state,
         items: newItems,
-        total: newItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-        itemCount: newItems.reduce((sum, item) => sum + item.quantity, 0),
+        total: sumTotal(newItems),
+        itemCount: sumCount(newItems),
       };
     }
-    
+
     case 'REMOVE_FROM_CART': {
-      const newItems = state.items.filter(item => item.id !== action.payload);
+      const newItems = state.items.filter(item => lineIdOf(item) !== action.payload);
       return {
         ...state,
         items: newItems,
-        total: newItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-        itemCount: newItems.reduce((sum, item) => sum + item.quantity, 0),
+        total: sumTotal(newItems),
+        itemCount: sumCount(newItems),
       };
     }
-    
+
     case 'UPDATE_QUANTITY': {
-      const { productId, change } = action.payload;
-      const item = state.items.find(item => item.id === productId);
-      
+      const { lineId, change } = action.payload;
+      const item = state.items.find(item => lineIdOf(item) === lineId);
+
       if (!item) return state;
-      
+
       const newQuantity = item.quantity + change;
       if (newQuantity <= 0) {
-        return cartReducer(state, { type: 'REMOVE_FROM_CART', payload: productId });
+        return cartReducer(state, { type: 'REMOVE_FROM_CART', payload: lineId });
       }
-      
+
       const newItems = state.items.map(item =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
+        lineIdOf(item) === lineId ? { ...item, quantity: newQuantity } : item
       );
-      
+
       return {
         ...state,
         items: newItems,
-        total: newItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-        itemCount: newItems.reduce((sum, item) => sum + item.quantity, 0),
+        total: sumTotal(newItems),
+        itemCount: sumCount(newItems),
       };
     }
-    
+
     case 'CLEAR_CART':
       return {
         items: [],
         total: 0,
         itemCount: 0,
       };
-    
-    case 'LOAD_CART':
+
+    case 'LOAD_CART': {
+      // Rétro-compatibilité : les paniers enregistrés avant l'ajout des variantes
+      // n'ont pas de champ `variant` — on les considère comme du détail.
+      const items = action.payload.map(item => ({
+        ...item,
+        variant: item.variant ?? ('detail' as SaleVariant),
+      }));
       return {
-        items: action.payload,
-        total: action.payload.reduce((sum, item) => sum + item.price * item.quantity, 0),
-        itemCount: action.payload.reduce((sum, item) => sum + item.quantity, 0),
+        items,
+        total: sumTotal(items),
+        itemCount: sumCount(items),
       };
-    
+    }
+
     default:
       return state;
   }
@@ -129,16 +142,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem('hdaily-cart', JSON.stringify(state.items));
   }, [state.items]);
 
-  const addToCart = (product: Product, quantity = 1) => {
-    dispatch({ type: 'ADD_TO_CART', payload: { product, quantity } });
+  const addToCart = (product: Product, quantity = 1, variant: SaleVariant = 'detail') => {
+    dispatch({ type: 'ADD_TO_CART', payload: { product, quantity, variant } });
   };
 
-  const removeFromCart = (productId: number) => {
-    dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
+  const removeFromCart = (lineId: string) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: lineId });
   };
 
-  const updateQuantity = (productId: number, change: number) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { productId, change } });
+  const updateQuantity = (lineId: string, change: number) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { lineId, change } });
   };
 
   const clearCart = () => {

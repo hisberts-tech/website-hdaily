@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 // ----- Enums -----
@@ -22,6 +23,7 @@ enum OrderStatus {
   pending
   confirmed
   preparing
+  out_for_delivery
   delivered
   cancelled
 }
@@ -95,15 +97,22 @@ model Product {
   id          Int      @id @default(autoincrement())
   name        String
   category    Category
-  price       Int // HTG (no decimals)
-  unit        String
+  price       Int // HTG (no decimals) — retail price per `unit`
+  unit        String // retail unit: kg, marmite, pièce, L…
   image       String
   description String
   stock       Int      @default(0)
   badge       String?
   active      Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+
+  // Wholesale ("en gros") option — sold by the pack (sac, caisse, carton…).
+  // All three are set together, or all null when the product is retail-only.
+  bulkUnit   String? // ex: "sac 25 kg", "caisse x24"
+  bulkPrice  Int? // HTG per pack
+  bulkMinQty Int? // minimum number of packs per order
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   orderItems OrderItem[]
 }

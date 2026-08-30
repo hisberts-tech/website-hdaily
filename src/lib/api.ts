@@ -1,5 +1,35 @@
 import { Product, CategoryFilter } from '../types';
 
+export type OrderStatus =
+  | 'pending'
+  | 'confirmed'
+  | 'preparing'
+  | 'out_for_delivery'
+  | 'delivered'
+  | 'cancelled';
+
+export interface OrderItem {
+  id: string;
+  productId: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
+
+export interface Order {
+  id: string;
+  userId: string | null;
+  customerName: string;
+  phone: string;
+  address: string;
+  paymentMethod: string;
+  status: OrderStatus;
+  total: number;
+  createdAt: string;
+  updatedAt: string;
+  items: OrderItem[];
+}
+
 // In dev, requests go to "/api" and Vite proxies them to the backend (see
 // vite.config.ts). In production set VITE_API_URL to the deployed API origin,
 // e.g. "https://api.h-daily.com".
@@ -54,7 +84,8 @@ export interface CheckoutPayload {
   phone: string;
   address: string;
   paymentMethod: 'moncash' | 'natcash' | 'cash' | 'card';
-  items: { productId: number; quantity: number }[];
+  // variant: 'gros' = acheté par conditionnement, 'detail' = à l'unité (défaut)
+  items: { productId: number; quantity: number; variant?: 'gros' | 'detail' }[];
 }
 
 export interface SubscriptionPayload {
@@ -86,6 +117,17 @@ export interface ContactPayload {
   phone: string;
   subject: string;
   message: string;
+}
+
+export interface SubscriptionPlan {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice: number | null;
+  frequency: string;
+  description: string;
+  features: string[];
+  popular: boolean;
 }
 
 export interface PaymentConfig {
@@ -124,10 +166,21 @@ export const api = {
 
   // Orders
   checkout: (payload: CheckoutPayload) =>
-    request(`/orders`, { method: 'POST', body: JSON.stringify(payload) }),
+    request<Order>(`/orders`, { method: 'POST', body: JSON.stringify(payload) }),
+  getOrder: (id: string) => request<Order>(`/orders/${id}`),
+  getOrdersByPhone: (phone: string) =>
+    request<Order[]>(`/orders/my-orders?phone=${encodeURIComponent(phone)}`),
+
+  // Admin — orders
+  listOrders: (status?: string) => {
+    const qs = status && status !== 'all' ? `?status=${status}` : '';
+    return request<Order[]>(`/orders${qs}`);
+  },
+  updateOrderStatus: (id: string, status: OrderStatus) =>
+    request<Order>(`/orders/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) }),
 
   // Subscriptions
-  getPlans: () => request(`/subscriptions/plans`),
+  getPlans: () => request<SubscriptionPlan[]>(`/subscriptions/plans`),
   subscribe: (payload: SubscriptionPayload) =>
     request(`/subscriptions`, { method: 'POST', body: JSON.stringify(payload) }),
 

@@ -8,10 +8,14 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "dev:api": "npm --prefix server run dev",
+    "dev:all": "concurrently -n frontend,backend -c cyan,green \"npm run dev\" \"npm run dev:api\"",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "db:push": "npm --prefix server run db:migrate",
+    "db:seed": "npm --prefix server run db:seed"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -29,6 +33,7 @@
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
+    "concurrently": "^9.2.3",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
