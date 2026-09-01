@@ -22,9 +22,9 @@ services:
         generateValue: true
       - key: JWT_EXPIRES_IN
         value: 7d
-      # Comma-separated list of allowed browser origins (the admin panel URL)
+      # Comma-separated list of allowed browser origins (admin panel + storefront)
       - key: CORS_ORIGIN
-        sync: false
+        value: https://hdaily-site.vercel.app
       - key: MONCASH_NUMBER
         value: "+509 3913 4651"
       # Twilio SMS alerts — optional, leave blank to disable
