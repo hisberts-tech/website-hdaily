@@ -10,9 +10,11 @@ export function createApp(): Express {
   const app = express();
 
   app.use(helmet());
+  // CORS_ORIGIN="*" reflects any origin (handy before custom domains are pinned).
+  const corsOrigin = env.corsOrigins.includes('*') ? true : env.corsOrigins;
   app.use(
     cors({
-      origin: env.corsOrigins,
+      origin: corsOrigin,
       credentials: true,
     })
   );
